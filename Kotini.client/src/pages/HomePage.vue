@@ -1,25 +1,90 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Vue 3 Starter</span>
-    </h1>
+  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid">
+    <div class="row">
+      <div class="about text-center">
+        <div class="session-button" @click="createSession">
+          <h1>CREATE SESSION</h1>
+        </div>
+        <div class="session-button" data-toggle="modal" data-target="#joinModal">
+          <h1>JOIN SESSION</h1>
+        </div>
+      </div>
+    </div>
   </div>
+  <JoinModal />
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AuthService } from '../services/AuthService'
+import { AppState } from '../AppState'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    return {
+      account: computed(() => AppState.account),
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
+.home {
+  font-family: 'Signika Negative', sans-serif;
+  height: 80vh;
 }
+
+h1 {
+  font-size: 2.25em;
+}
+
+.session-button:hover {
+  cursor: pointer;
+  background: #ff9e00;
+  color: #240046;
+  text-shadow: 0;
+  transition: 100ms linear;
+}
+
+.session-button::after {
+  border-radius: 60px;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #ff9e00;
+  opacity: 0;
+  transition: 100ms linear;
+}
+
+.session-button:hover::after {
+  opacity: 1;
+}
+
+.session-button {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  color: #ff9e00;
+  font-family: 'Signika Negative', sans-serif;
+  border: #ff9e00 4px solid;
+  padding: 1em 3em 0.35em 3em;
+  border-radius: 60px;
+
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+
+  box-shadow:
+    0 0 1em 0 #ff9e00 inset,
+    0 0 1em 0 #ff9e00;
+
+  position: relative;
+}
+
 </style>

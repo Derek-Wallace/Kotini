@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 export const SessionSchema = new Schema(
   {
-    participants: { type: Array },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

@@ -1,4 +1,5 @@
 import { dbContext } from '../db/DbContext'
+import { socketProvider } from '../SocketProvider'
 
 // Private Methods
 
@@ -43,8 +44,20 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async updateCurrentGame(body, id) {
+    const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
+    socketProvider.io.to(`${body.currentGame}`).emit('updateGameSession')
+    return account
+  }
+
+  async updateCurrentSession(body, id) {
+    const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
+    socketProvider.io.to(`${body.currentSession}`).emit('updateCurrentSession')
+    return account
+  }
+
   async updateStats(body, id) {
-    const account = dbContext.Account.findByIdAndUpdate(id, body)
+    const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
     return account
   }
 

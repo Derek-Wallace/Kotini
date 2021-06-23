@@ -10,7 +10,7 @@ export class SessionsController extends BaseController {
       .get('/:id', this.getSessionById)
       .post('', this.createSession)
       .delete('/:id', this.deleteSession)
-      .put('/:id', this.addParticipant)
+      .put('/:id', this.updateParticipant)
   }
 
   async getSessionById(req, res, next) {
@@ -41,9 +41,9 @@ export class SessionsController extends BaseController {
     }
   }
 
-  async addParticipant(req, res, next) {
+  async updateParticipant(req, res, next) {
     try {
-      const session = await sessionsService.addParticipant(req.params.id, req.body)
+      const session = await sessionsService.updateParticipant(req.params.id, req.body)
       return res.send(session)
     } catch (error) {
       next(error)

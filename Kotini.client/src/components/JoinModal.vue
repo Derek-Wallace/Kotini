@@ -30,9 +30,11 @@
 import { reactive } from '@vue/reactivity'
 import { sessionService } from '../services/SessionService'
 import $ from 'jquery'
+import { useRouter } from 'vue-router'
 
 export default {
   setup() {
+    const router = useRouter()
     const state = reactive({
       session: null
     })
@@ -42,6 +44,7 @@ export default {
         await sessionService.joinSession(state.session)
         $('#joinModal').modal('hide')
         event.target.reset()
+        router.push({ name: 'Session', params: { id: state.session } })
       }
     }
   }

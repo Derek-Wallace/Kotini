@@ -1,6 +1,7 @@
 import { logger } from '../utils/Logger'
 import { SocketHandler } from '../utils/SocketHandler'
 import Notification from '../utils/Notification'
+import { sessionService } from './SessionService'
 
 class SocketService extends SocketHandler {
   constructor() {
@@ -17,6 +18,7 @@ class SocketService extends SocketHandler {
 
   testJoin(payload) {
     console.log('joined', payload)
+    sessionService.getLobbyPlayers(payload)
   }
 }
 

@@ -2,6 +2,11 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class SessionService {
+  async getSession(sid) {
+    const res = await api.get('api/sessions/' + sid)
+    AppState.session = res.data
+  }
+
   async createSession() {
     const res = await api.post('api/sessions')
     AppState.session = res.data

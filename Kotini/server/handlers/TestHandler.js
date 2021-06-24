@@ -1,3 +1,4 @@
+import { socketProvider } from '../SocketProvider'
 import { SocketHandler } from '../utils/SocketHandler'
 
 export class TestHandler extends SocketHandler {
@@ -8,10 +9,10 @@ export class TestHandler extends SocketHandler {
   constructor(io, socket) {
     super(io, socket)
     this
-      .on('SOCKET_TEST', this.testEvent)
+      .on('join', this.joinRoom)
   }
 
-  async testEvent(payload) {
-    this.socket.emit('IS_TESTED', payload)
+  async joinRoom(payload) {
+    socketProvider.io.emit('joined', payload)
   }
 }

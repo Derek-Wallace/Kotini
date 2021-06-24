@@ -7,11 +7,16 @@ class SocketService extends SocketHandler {
     super()
     this
       .on('error', this.onError)
+      .on('joined', this.testJoin)
   }
 
   onError(e) {
     logger.error('[SOCKET_ERROR]', e)
     Notification.toast(e.message, 'error')
+  }
+
+  testJoin(payload) {
+    console.log('joined', payload)
   }
 }
 

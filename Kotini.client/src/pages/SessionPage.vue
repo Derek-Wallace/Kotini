@@ -12,14 +12,16 @@
 </template>
 
 <script>
-import { computed, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 import { sessionService } from '../services/SessionService'
 import { useRoute } from 'vue-router'
+import { io } from 'socket.io-client'
 export default {
   setup() {
     const route = useRoute()
+    const socket = io.connect()
     watchEffect(async() => {
       try {
         await sessionService.joinSession(route.params.id)
@@ -28,6 +30,11 @@ export default {
         Notification.toast(error)
       }
     })
+    onMounted(() =>
+      socket.on('connect', () => {
+        socket.emit('join', route.params.id)
+      })
+    )
     return {
       players: computed(() => AppState.lobbyPlayers)
     }

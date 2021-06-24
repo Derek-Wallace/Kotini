@@ -23,7 +23,7 @@ class AccountService {
 
   async updateProfileGame(account, gid) {
     try {
-      const res = await api.put('/account/' + gid, account)
+      const res = await api.put('/account/game/' + gid, account)
       AppState.account = res.data
     } catch (error) {
       Notification.toast(error)

@@ -165,4 +165,12 @@ export default {
     z-index: -10;
   }
 }
+
+@media only screen and (min-width: 900px) {
+  .navbar-item-m, .nav-mobile, .nav-square {
+    display: none;
+    background: none;
+    z-index: -10;
+  }
+}
 </style>

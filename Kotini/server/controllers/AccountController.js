@@ -12,6 +12,17 @@ export class AccountController extends BaseController {
       .put('', this.updateStats)
       .put('/:sid', this.updateCurrentSession)
       .put('/:gid', this.updateCurrentGame)
+      .put('/:id', this.updateAccount)
+  }
+
+  async updateAccount(req, res, next) {
+    try {
+      req.body.id = req.params.id
+      const account = await accountService.updateAccount(req.userInfo.id, req.body)
+      return res.send(account)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getUserAccount(req, res, next) {

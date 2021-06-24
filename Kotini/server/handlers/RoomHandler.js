@@ -1,7 +1,7 @@
 import { socketProvider } from '../SocketProvider'
 import { SocketHandler } from '../utils/SocketHandler'
 
-export class TestHandler extends SocketHandler {
+export class RoomHandler extends SocketHandler {
   /**
    * @param {import("socket.io").Server} io
    * @param {import("socket.io").Socket} socket

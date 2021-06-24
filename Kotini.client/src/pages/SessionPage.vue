@@ -43,6 +43,7 @@ export default {
       } catch (error) {
         Notification.toast(error)
       }
+      socketHandler.join(route.params.id)
       socketHandler.emit('join', route.params.id)
     })
     return {

@@ -52,7 +52,7 @@ class AccountService {
 
   async updateCurrentGame(body, id) {
     const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
-    socketProvider.io.to(`${body.currentGame}`).emit('updateGameSession')
+    socketProvider.io.to(`${account.currentSession}`).emit('updateGameSession')
     return account
   }
 

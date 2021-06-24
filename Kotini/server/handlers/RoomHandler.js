@@ -10,9 +10,14 @@ export class RoomHandler extends SocketHandler {
     super(io, socket)
     this
       .on('join', this.joinRoom)
+      .on('gameCreated', this.updatePlayers)
   }
 
-  async joinRoom(payload) {
+  joinRoom(payload) {
     socketProvider.io.emit('joined', payload)
+  }
+
+  updatePlayers(data) {
+    socketProvider.io.to(`${data.sessionId}`).emit('updatePlayers', data.id)
   }
 }

@@ -2,6 +2,8 @@ import { logger } from '../utils/Logger'
 import { SocketHandler } from '../utils/SocketHandler'
 import Notification from '../utils/Notification'
 import { sessionService } from './SessionService'
+import { accountService } from './AccountService'
+import { AppState } from '../AppState'
 
 class SocketService extends SocketHandler {
   constructor() {
@@ -9,6 +11,7 @@ class SocketService extends SocketHandler {
     this
       .on('error', this.onError)
       .on('joined', this.testJoin)
+      .on('updatePlayers', this.updatePlayers)
   }
 
   onError(e) {
@@ -18,6 +21,11 @@ class SocketService extends SocketHandler {
 
   testJoin(payload) {
     sessionService.getLobbyPlayers(payload)
+  }
+
+  async updatePlayers(gid) {
+    await accountService.updateProfileGame(AppState.account, gid)
+    console.log(AppState.account)
   }
 }
 

@@ -13,7 +13,7 @@ class SessionService {
   }
 
   async joinSession(sid) {
-    const res = await api.put('/account/' + sid)
+    const res = await api.put('/account/session/' + sid)
     AppState.account = res.data
   }
 

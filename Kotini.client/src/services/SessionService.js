@@ -11,6 +11,11 @@ class SessionService {
     const res = await api.put('/account/' + sid)
     AppState.account = res.data
   }
+
+  async getLobbyPlayers(sid) {
+    const res = await api.get('account/' + sid)
+    AppState.lobbyPlayers = res.data
+  }
 }
 
 export const sessionService = new SessionService()

@@ -15,6 +15,7 @@ export class ReactionGameController extends BaseController {
   async createGame(req, res, next) {
     try {
       req.body.sessionId = req.params.sid
+      req.body.creatorId = req.userInfo.id
       const game = await reactionGameService.createGame(req.body)
       return res.send(game)
     } catch (error) {

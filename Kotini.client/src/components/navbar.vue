@@ -36,7 +36,10 @@
           <span class="navbar-item">HELP</span>
         </div>
         <div class="col-6 d-flex justify-content-end" v-if="account.id">
-          <span class="navbar-item">{{ account.name.toUpperCase() }}</span>
+          <router-link :to="{name: 'Account'}">
+            <span class="navbar-item">{{ account.name.toUpperCase() }}</span>
+          </router-link>
+          <span class="navbar-item">K-KASH: {{ account.wallet }}</span>
           <span class="navbar-item" @click="logout" role="button">LOGOUT</span>
         </div>
       </div>

@@ -5,7 +5,8 @@ const socketHandler = new SocketHandler()
 class GameService {
   async createGame(sid) {
     const res = await api.post('api/reactiongames/' + sid)
-    socketHandler.emit('gameCreated', res.body)
+    console.log(res.data)
+    socketHandler.emit('gameCreated', res.data)
   }
 }
 

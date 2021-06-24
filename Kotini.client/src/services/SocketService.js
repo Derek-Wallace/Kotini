@@ -28,6 +28,7 @@ class SocketService extends SocketHandler {
       currentGame: id
     }
     await accountService.editProfile(AppState.account.id, body)
+    console.log(AppState.account)
   }
 }
 

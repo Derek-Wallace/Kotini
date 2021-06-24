@@ -19,7 +19,8 @@ const routes = [
   {
     path: '/sessions/:id',
     name: 'Session',
-    component: loadPage('SessionPage')
+    component: loadPage('SessionPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/about',

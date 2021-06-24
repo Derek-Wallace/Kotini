@@ -22,8 +22,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-6">
-          <span class="navbar-item">HOME</span>
-          <span class="navbar-item">ACCOUNT</span>
+          <router-link :to="{name: 'Home'}">
+            <span class="navbar-item">HOME</span>
+          </router-link>
+          <router-link :to="{name: 'Account'}">
+            <span class="navbar-item">ACCOUNT</span>
+          </router-link>
           <span class="navbar-item">LEADERBOARDS</span>
           <span class="navbar-item">HELP</span>
         </div>

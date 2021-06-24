@@ -8,6 +8,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/:sid', this.getLobbyPlayers)
       .put('', this.updateStats)
       .put('/:sid', this.updateCurrentSession)
       .put('/:gid', this.updateCurrentGame)
@@ -17,6 +18,15 @@ export class AccountController extends BaseController {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getLobbyPlayers(req, res, next) {
+    try {
+      const players = await accountService.getLobbyPlayers(req.params.sid)
+      return res.send(players)
     } catch (error) {
       next(error)
     }

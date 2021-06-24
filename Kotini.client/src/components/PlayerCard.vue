@@ -1,6 +1,6 @@
 <template>
   <div class="player-card shadow">
-    <h1>Player Name</h1>
+    <h1>{{ player.name }}</h1>
   </div>
 </template>
 

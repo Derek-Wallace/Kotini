@@ -64,11 +64,4 @@ export class SocketHandler {
     }
     this.socket.emit(action, payload)
   }
-
-  join(room) {
-    if (!connected) {
-      logger.log('[ENQUEING_ACTION]')
-    }
-    this.socket.join(`${room}`)
-  }
 }

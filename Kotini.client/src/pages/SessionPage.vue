@@ -1,8 +1,13 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 text-center mt-4 text-break">
+      <div class="col-lg-12 text-center mt-4 text-break session-title">
         <h1>Your Session: {{ route }}</h1>
+      </div>
+      <div class="col-lg-12" v-if="account.id === session.creatorId">
+        <div class="start-button text-center ml-5 mr-5" @click="startGame(session.id)">
+          <h1>START GAME</h1>
+        </div>
       </div>
       <div class="col-lg-5">
         <PlayerCard v-for="player in players" :key="player" :player="player" />
@@ -35,19 +40,70 @@ export default {
     })
     return {
       players: computed(() => AppState.lobbyPlayers),
-      route: route.params.id
+      account: computed(() => AppState.account),
+      session: computed(() => AppState.session),
+      route: route.params.id,
+      startGame(sid) {
+        console.log(sid)
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-h1 {
+.session-title {
   font-family: 'Signika Negative', sans-serif;
-  color: #ff9e00;
   text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
+  color: #ff9e00;
+}
+
+.start-button:hover {
+  cursor: pointer;
+  background: #ff9e00;
+  color: #240046;
+  text-shadow: 0;
+  transition: 100ms linear;
+}
+
+.start-button::after {
+  border-radius: 60px;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #ff9e00;
+  opacity: 0;
+  transition: 100ms linear;
+}
+
+.start-button:hover::after {
+  opacity: 1;
+}
+
+.start-button {
+  margin-top: 30px;
+  font-size: 0.75rem;
+  color: #ff9e00;
+  font-family: 'Signika Negative', sans-serif;
+  border: #ff9e00 4px solid;
+  padding: 1em 3em 0.35em 3em;
+  border-radius: 60px;
+  user-select: none;
+
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+
+  box-shadow:
+    0 0 1em 0 #ff9e00 inset,
+    0 0 1em 0 #ff9e00;
+
+  position: relative;
 }
 
 </style>

@@ -17,7 +17,7 @@ export class RoomHandler extends SocketHandler {
     socketProvider.io.emit('joined', payload)
   }
 
-  updatePlayers(body) {
-    socketProvider.io.emit('updatePlayers', body.id)
+  updatePlayers(data) {
+    socketProvider.io.to(`${data.sessionId}`).emit('updatePlayers', data.id)
   }
 }

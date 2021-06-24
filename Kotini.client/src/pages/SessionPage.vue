@@ -23,9 +23,7 @@ export default {
     watchEffect(async() => {
       try {
         await sessionService.joinSession(route.params.id)
-        if (AppState.account.id) {
-          await sessionService.getLobbyPlayers(route.params.id)
-        }
+        await sessionService.getLobbyPlayers(route.params.id)
       } catch (error) {
         Notification.toast(error)
       }

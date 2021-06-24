@@ -31,13 +31,6 @@
         </form>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2 ml-auto">
-        <h3 role="button" @click="logout">
-          LOGOUT
-        </h3>
-      </div>
-    </div>
   </div>
 </template>
 

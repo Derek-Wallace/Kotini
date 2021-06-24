@@ -23,11 +23,8 @@ class SocketService extends SocketHandler {
     sessionService.getLobbyPlayers(payload)
   }
 
-  async updatePlayers(id) {
-    const body = {
-      currentGame: id
-    }
-    await accountService.editProfile(AppState.account.id, body)
+  async updatePlayers(gid) {
+    await accountService.updateProfileGame(AppState.account, gid)
     console.log(AppState.account)
   }
 }

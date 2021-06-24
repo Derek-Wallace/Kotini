@@ -4,7 +4,7 @@
       <div class="col-lg-12 text-center mt-4 text-break">
         <h1>Your Session: {{ route }}</h1>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <PlayerCard v-for="player in players" :key="player" :player="player" />
       </div>
     </div>

@@ -10,8 +10,8 @@ export class AccountController extends BaseController {
       .get('', this.getUserAccount)
       .get('/:sid', this.getLobbyPlayers)
       .put('', this.updateStats)
-      .put('/:sid', this.updateCurrentSession)
-      .put('/:gid', this.updateCurrentGame)
+      .put('/session/:sid', this.updateCurrentSession)
+      .put('/game/:gid', this.updateCurrentGame)
       .put('/:id', this.updateAccount)
   }
 

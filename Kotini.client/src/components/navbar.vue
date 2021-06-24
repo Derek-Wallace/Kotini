@@ -5,12 +5,16 @@
     <div class="line line-3"></div>
   </div>
   <div id="mobile-nav" class="mt-5 pt-2 pb-2 pl-2 nav-mobile fade-out">
-    <h1 class="navbar-item-m">
-      HOME
-    </h1>
-    <h1 class="navbar-item-m">
-      ACCOUNT
-    </h1>
+    <router-link :to="{name: 'Home'}">
+      <h1 class="navbar-item-m">
+        HOME
+      </h1>
+    </router-link>
+    <router-link :to="{name: 'Account'}">
+      <h1 class="navbar-item-m">
+        ACCOUNT
+      </h1>
+    </router-link>
     <h1 class="navbar-item-m">
       LEADERBOARDS
     </h1>

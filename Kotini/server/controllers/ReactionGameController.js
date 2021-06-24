@@ -7,13 +7,14 @@ export class ReactionGameController extends BaseController {
     super('api/reactiongames')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createGame)
+      .post('/:sid', this.createGame)
       .get('/:id', this.getGame)
       .delete('/:id', this.deleteGame)
   }
 
   async createGame(req, res, next) {
     try {
+      req.body.sessionId = req.params.sid
       const game = await reactionGameService.createGame(req.body)
       return res.send(game)
     } catch (error) {

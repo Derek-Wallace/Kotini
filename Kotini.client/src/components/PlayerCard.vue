@@ -1,6 +1,8 @@
 <template>
   <div class="player-card shadow">
-    <h1>{{ player.name }}</h1>
+    <p class="player-name">
+      {{ player.name }}
+    </p>
   </div>
 </template>
 
@@ -17,7 +19,10 @@ export default {
   padding: 1em 3em;
   margin-top: 20px;
   margin-left: 20px;
-  font-size: 0.35em;
+}
+
+.player-name {
+  font-size: 2em;
 }
 
 </style>

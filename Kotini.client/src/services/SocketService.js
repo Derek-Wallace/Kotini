@@ -17,7 +17,6 @@ class SocketService extends SocketHandler {
   }
 
   testJoin(payload) {
-    console.log('joined', payload)
     sessionService.getLobbyPlayers(payload)
   }
 }

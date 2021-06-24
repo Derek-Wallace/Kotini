@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 text-center mt-4">
-        <h1>Your Session</h1>
+      <div class="col-lg-12 text-center mt-4 text-break">
+        <h1>Your Session: {{ route }}</h1>
       </div>
       <div class="col-lg-6">
         <PlayerCard v-for="player in players" :key="player" :player="player" />
@@ -34,7 +34,8 @@ export default {
       socketHandler.emit('join', route.params.id)
     })
     return {
-      players: computed(() => AppState.lobbyPlayers)
+      players: computed(() => AppState.lobbyPlayers),
+      route: route.params.id
     }
   }
 }

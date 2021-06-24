@@ -4,7 +4,7 @@
     <div class="line line-2"></div>
     <div class="line line-3"></div>
   </div>
-  <div id="mobile-nav" class="mt-5 pt-5 nav-mobile fade-out">
+  <div id="mobile-nav" class="mt-5 pt-2 pb-2 pl-2 nav-mobile fade-out">
     <h1 class="navbar-item-m">
       HOME
     </h1>
@@ -65,9 +65,13 @@ export default {
 <style scoped>
 .nav-mobile {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 20px;
   transition: 100ms linear;
+  z-index: 10;
+  background: #3c096c;
+  border: #ff9e00 2px solid;
+  box-shadow: 0 0 3em 0 #ff9e00;
 }
 .navbar-display{
   position: fixed;
@@ -99,6 +103,7 @@ export default {
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
   font-size: 1.25em;
+  z-index: 20;
 }
 
 .nav-square {

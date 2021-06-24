@@ -3,12 +3,12 @@ import { api } from './AxiosService'
 
 class SessionService {
   async createSession() {
-    const res = await api.post('/sessions', AppState.account.id)
+    const res = await api.post('api/sessions')
     AppState.session = res.data
   }
 
   async joinSession(sid) {
-    const res = await api.put('/account/' + sid, sid)
+    const res = await api.put('/account/' + sid)
     AppState.account = res.data
   }
 }

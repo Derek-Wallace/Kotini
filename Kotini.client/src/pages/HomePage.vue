@@ -15,15 +15,26 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, reactive } from '@vue/runtime-core'
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
+import { sessionService } from '../services/SessionService'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Home',
   setup() {
+    const router = useRouter()
+    const state = reactive({
+      session: computed(() => AppState.session)
+    })
     return {
+      state,
       account: computed(() => AppState.account),
+      async createSession() {
+        await sessionService.createSession()
+        router.push({ name: 'Session', params: { id: state.session.id } })
+      },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
       }

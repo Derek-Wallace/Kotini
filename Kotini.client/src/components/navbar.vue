@@ -1,8 +1,22 @@
 <template>
-  <div class="nav-square">
+  <div class="nav-square" @click="toggleMobile">
     <div class="line line-1"></div>
     <div class="line line-2"></div>
     <div class="line line-3"></div>
+  </div>
+  <div id="mobile-nav" class="mt-5 pt-5 nav-mobile fade-out">
+    <h1 class="navbar-item-m">
+      HOME
+    </h1>
+    <h1 class="navbar-item-m">
+      ACCOUNT
+    </h1>
+    <h1 class="navbar-item-m">
+      LEADERBOARDS
+    </h1>
+    <h1 class="navbar-item-m">
+      HELP
+    </h1>
   </div>
   <div class="navbar-display d-flex">
     <div class="container-fluid">
@@ -39,6 +53,9 @@ export default {
       account: computed(() => AppState.account),
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      toggleMobile() {
+        document.getElementById('mobile-nav').classList.toggle('fade-out')
       }
     }
   }
@@ -46,6 +63,12 @@ export default {
 </script>
 
 <style scoped>
+.nav-mobile {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  transition: 100ms linear;
+}
 .navbar-display{
   position: fixed;
   padding: 30px;
@@ -66,6 +89,16 @@ export default {
   text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
+}
+
+.navbar-item-m {
+  margin-right: 20px;
+  font-family: 'Nunito', sans-serif;
+  color: #ff9e00;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+  font-size: 1.25em;
 }
 
 .nav-square {
@@ -107,10 +140,16 @@ export default {
   left: 8px;
 }
 
+.fade-out {
+  opacity: 0;
+  transition: 100ms linear;
+}
+
 @media only screen and (max-width: 900px) {
   .navbar-item, .navbar-display, .navbar-border {
     display: none;
     background: none;
+    z-index: -10;
   }
 }
 </style>

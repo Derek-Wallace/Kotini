@@ -50,7 +50,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.about {
+  h1 {
+  font-family: 'Signika Negative', sans-serif;
+  color: #ff9e00;
+
+  }
+}
+
 img {
   max-width: 100px;
 }

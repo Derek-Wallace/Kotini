@@ -44,6 +44,12 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async getLobbyPlayers(sid) {
+    const players = await dbContext.Account.find({ currentSession: sid })
+    socketProvider.io.to(`${sid}`).emit('getLobbyPlayers')
+    return players
+  }
+
   async updateCurrentGame(body, id) {
     const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
     socketProvider.io.to(`${body.currentGame}`).emit('updateGameSession')
@@ -52,7 +58,6 @@ class AccountService {
 
   async updateCurrentSession(body, id) {
     const account = await dbContext.Account.findByIdAndUpdate(id, body, { new: true })
-    socketProvider.io.to(`${body.currentSession}`).emit('updateCurrentSession')
     return account
   }
 

@@ -4,8 +4,8 @@
       <div class="col-lg-12 text-center mt-4 text-break session-title">
         <h1>Your Session: {{ route }}</h1>
       </div>
-      <div class="col-lg-12" v-if="account.id === session.creatorId">
-        <div class="start-button text-center ml-5 mr-5" @click="startGame(session.id)">
+      <div class="col-lg-12" v-if="(account.id === session.creatorId)">
+        <div class="start-button text-center ml-5 mr-5" @click="createGame(session.id)">
           <h1>START GAME</h1>
         </div>
       </div>
@@ -21,8 +21,10 @@ import { computed, onMounted, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 import { sessionService } from '../services/SessionService'
+import { gameService } from '../services/GameService'
 import { useRoute } from 'vue-router'
 import { SocketHandler } from '../utils/SocketHandler'
+
 export default {
   setup() {
     const route = useRoute()
@@ -35,7 +37,12 @@ export default {
         Notification.toast(error)
       }
     })
-    onMounted(() => {
+    onMounted(async() => {
+      try {
+        await sessionService.getSession(route.params.id)
+      } catch (error) {
+        Notification.toast(error)
+      }
       socketHandler.emit('join', route.params.id)
     })
     return {
@@ -43,8 +50,8 @@ export default {
       account: computed(() => AppState.account),
       session: computed(() => AppState.session),
       route: route.params.id,
-      startGame(sid) {
-        console.log(sid)
+      async createGame(sid) {
+        await gameService.createGame(sid)
       }
     }
   }

@@ -39,7 +39,7 @@
           <router-link :to="{name: 'Account'}">
             <span class="navbar-item">{{ account.name.toUpperCase() }}</span>
           </router-link>
-          <span class="navbar-item">K-KASH: {{ account.wallet }}</span>
+          <span class="navbar-item"><img src="../assets/img/k-bucks.png" height="20" alt="KKash:">: {{ account.wallet }}</span>
           <span class="navbar-item" @click="logout" role="button">LOGOUT</span>
         </div>
       </div>

@@ -32,7 +32,9 @@
           <router-link :to="{name: 'Account'}">
             <span class="navbar-item">ACCOUNT</span>
           </router-link>
-          <span class="navbar-item">LEADERBOARDS</span>
+          <router-link :to="{name: 'Leaderboard'}">
+            <span class="navbar-item">LEADERBOARDS</span>
+          </router-link>
           <span class="navbar-item">HELP</span>
         </div>
         <div class="col-6 d-flex justify-content-end" v-if="account.id">

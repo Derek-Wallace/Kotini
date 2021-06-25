@@ -1,5 +1,8 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid">
+    <p class="title display-1">
+      K O T I N I
+    </p>
     <div class="row">
       <div class="about text-center">
         <div class="session-button" @click="createSession">
@@ -97,5 +100,11 @@ h1 {
 
   position: relative;
 }
-
+.title {
+  font-family: 'Nunito', sans-serif;
+  color: #ff9e00;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+}
 </style>

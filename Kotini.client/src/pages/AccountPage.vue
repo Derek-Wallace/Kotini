@@ -2,15 +2,12 @@
   <div v-if="account.name" class="container">
     <div class="row text-center my-4">
       <div class="col-12 about">
-        <h1>WELCOME {{ account.name.toUpperCase() }}</h1>
+        <h1>{{ account.name.toUpperCase() }}</h1>
       </div>
     </div>
     <div class="row my-4">
       <div class="col-md-3 about text-center">
-        <img class="rounded" :src="account.picture" alt="" />
-        <p class="name">
-          {{ account.name.toUpperCase() }}
-        </p>
+        <img class="rounded-circle picture-glow" :src="account.picture" alt="" />
       </div>
       <div class="col-md-3 d-flex align-items-center">
         <div class="about text-center">
@@ -74,6 +71,13 @@ export default {
   background: none;
   border: none;
 
+}
+
+.picture-glow{
+  border: 2px solid #ff9e00;
+    box-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
 }
 
 .about {

@@ -34,6 +34,11 @@ const routes = [
     component: loadPage('LeaderboardsPage')
   },
   {
+    path: '/help',
+    name: 'Help',
+    component: loadPage('HelpPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),

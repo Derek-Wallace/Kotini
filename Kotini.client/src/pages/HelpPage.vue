@@ -3,8 +3,11 @@
     <div class="row">
       <div class="col-10 mx-auto my-5 text-center">
         <h1 class="navbar-item">
-          LEADERBOARDS
+          How to Play
         </h1>
+        <p class="navbar-item">
+          When you find out let us know
+        </p>
       </div>
     </div>
   </div>

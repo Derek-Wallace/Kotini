@@ -78,12 +78,18 @@ export default {
 
 .about {
   h3, h1 {
-  font-family: 'Signika Negative', sans-serif;
+    font-family: 'Nunito', sans-serif;
+
   color: #ff9e00;
+   text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
   }
 
 .name {
-  font-family: 'Signika Negative', sans-serif;
+    font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif;
+
   color: #ff9e00;
   font-size: 20px;
 }

@@ -17,17 +17,18 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted, reactive, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 import { sessionService } from '../services/SessionService'
 import { gameService } from '../services/GameService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { SocketHandler } from '../utils/SocketHandler'
 
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
     const socketHandler = new SocketHandler()
     watchEffect(async() => {
       try {
@@ -45,13 +46,18 @@ export default {
       }
       socketHandler.emit('join', route.params.id)
     })
+    const state = reactive({
+      session: computed(() => AppState.session)
+    })
     return {
+      state,
       players: computed(() => AppState.lobbyPlayers),
       account: computed(() => AppState.account),
       session: computed(() => AppState.session),
       route: route.params.id,
       async createGame(sid) {
         await gameService.createGame(sid)
+        router.push({ name: 'Game', params: { id: state.session.id } })
       }
     }
   }

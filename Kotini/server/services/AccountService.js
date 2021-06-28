@@ -120,7 +120,7 @@ class AccountService {
   async updateAccount(user, body) {
     const update = sanitizeBody(body)
     const account = await dbContext.Account.findOneAndUpdate(
-      { _id: user.id },
+      { _id: user },
       { $set: update },
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     )

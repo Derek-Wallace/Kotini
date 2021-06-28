@@ -106,7 +106,7 @@ font-size: 2.5vh;
 
 img {
   height: 200px;
-  max-width: 300px;
+  max-width: 200px;
 }
 
 @media only screen and (max-width: 900px) {

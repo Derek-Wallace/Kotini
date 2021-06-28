@@ -82,4 +82,17 @@ box-shadow:
     0 0 .45em #ff9e00;
 }
 
+@keyframes border-pulsate {
+    0%   { border-color: #ff9e00; }
+    50% { border-color: rgba(0, 255, 255, 0); }
+    100%   { border-color: #ff9e00; }
+}
+
+.border-oj {
+    display: block;
+    margin: 5px auto;
+    border: 5px solid #ff9e00;
+    animation: border-pulsate 5s infinite;
+}
+
 </style>

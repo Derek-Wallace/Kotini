@@ -1,18 +1,18 @@
 <template>
   <div v-if="account.name" class="container">
     <div class="row text-center my-4">
-      <div class="col-12 about">
-        <h1>{{ account.name.toUpperCase() }}</h1>
+      <div class="col-12 player-header">
+        {{ account.name.toUpperCase() }}
       </div>
     </div>
     <div class="row my-4">
-      <div class="col-md-3 about text-center">
+      <div class="col-md-3 text-center">
         <img class="rounded-circle picture-glow" :src="account.picture" alt="" />
       </div>
-      <div class="col-md-3 d-flex align-items-center">
+      <div class="col-md-5 d-flex align-items-center">
         <div class="about text-center">
-          <h3>GAMES PLAYED: {{ account.gamesPlayed }}</h3>
-          <h3>K-BUCKS: {{ account.wallet }}</h3>
+          <div>K-BUCKS: {{ account.wallet }}</div>
+          <div>GAMES PLAYED: {{ account.gamesPlayed }}</div>
         </div>
       </div>
       <div class="col-md-3 ml-auto">
@@ -70,7 +70,14 @@ export default {
   font-size: 1.25em;
   background: none;
   border: none;
+}
 
+.player-header {
+  font-size: 4vh;
+  color: #ff9e00;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
 }
 
 .picture-glow{
@@ -81,10 +88,9 @@ export default {
 }
 
 .about {
-  h3, h1 {
-    font-family: 'Nunito', sans-serif;
-
-  color: #ff9e00;
+font-size: 2.5vh;
+   font-family: 'Nunito', sans-serif;
+   color: #ff9e00;
    text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
@@ -96,7 +102,6 @@ export default {
 
   color: #ff9e00;
   font-size: 20px;
-}
 }
 
 img {

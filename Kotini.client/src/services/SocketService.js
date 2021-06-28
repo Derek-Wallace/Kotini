@@ -14,6 +14,7 @@ class SocketService extends SocketHandler {
       .on('joined', this.joinSession)
       .on('updatePlayers', this.updatePlayers)
       .on('gameCreated', this.joinGame)
+      .on('game-over', this.gameOver)
   }
 
   onError(e) {
@@ -32,6 +33,11 @@ class SocketService extends SocketHandler {
   async joinGame(game) {
     await gameService.joinGame(game.id)
     AppState.currentGame = game
+  }
+
+  async gameOver(gid) {
+    console.log('end')
+    await gameService.getGame(gid)
   }
 }
 

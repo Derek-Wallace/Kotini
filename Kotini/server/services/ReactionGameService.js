@@ -2,6 +2,16 @@ import { dbContext } from '../db/DbContext'
 import { socketProvider } from '../SocketProvider'
 
 class ReactionGameService {
+  async gamePlayed(gid, id) {
+    const game = await dbContext.ReactionGame.findByIdAndUpdate(gid, { $push: { results: id } })
+    const gamePlayers = await dbContext.Account.find({ currentGame: gid })
+    if (gamePlayers.length <= game.results.length + 1) {
+      await dbContext.ReactionGame.findByIdAndUpdate(gid, { ended: true })
+      socketProvider.io.emit('game-over', gid)
+    }
+    return game
+  }
+
   async getGamePlayers(gid) {
     const players = await dbContext.Account.find({ currentGame: gid })
     return players

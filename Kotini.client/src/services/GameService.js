@@ -15,6 +15,15 @@ class GameService {
   async joinGame(gid) {
     await api.put('account/joingame/' + gid)
   }
+
+  async gamePlayed(gid, id) {
+    const res = await api.put(`api/reactiongames/${gid}/played/` + id)
+  }
+
+  async getGame(gid) {
+    const res = await api.get('api/reactiongames/' + gid)
+    AppState.currentGame = res.data
+  }
 }
 
 export const gameService = new GameService()

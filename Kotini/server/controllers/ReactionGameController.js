@@ -11,6 +11,16 @@ export class ReactionGameController extends BaseController {
       .get('/:id', this.getGame)
       .get('/players/:gid', this.getGamePlayers)
       .delete('/:id', this.deleteGame)
+      .put('/:gid/played/:id', this.gamePlayed)
+  }
+
+  async gamePlayed(req, res, next) {
+    try {
+      const game = await reactionGameService.gamePlayed(req.params.gid, req.params.id)
+      return res.send(game)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async createGame(req, res, next) {

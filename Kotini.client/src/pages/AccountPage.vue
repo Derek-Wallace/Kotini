@@ -20,8 +20,8 @@
           EDIT PROFILE
         </button>
         <form @submit.prevent="editProfile(account.id)" v-if="showEditForm">
-          <textarea name="name" rows="1" placeholder="name..." v-model="state.newInfo.name"></textarea>
-          <textarea name="picture" rows="1" placeholder="picture..." v-model="state.newInfo.picture"></textarea>
+          <input name="name" rows="1" placeholder="name..." v-model="state.newInfo.name">
+          <input name="picture" rows="1" placeholder="picture..." v-model="state.newInfo.picture">
           <button class="edit-button" type="submit">
             UPDATE
           </button>
@@ -41,7 +41,7 @@ export default {
   name: 'Account',
   setup() {
     const state = reactive({
-      newInfo: {}
+      newInfo: { name: AppState.account.name, picture: AppState.account.picture }
     })
     const showEditForm = ref(false)
     return {
@@ -53,7 +53,7 @@ export default {
       },
       async editProfile(id) {
         await accountService.editProfile(id, state.newInfo)
-        state.newInfo = {}
+        state.newInfo = { name: AppState.account.name, picture: AppState.account.picture }
       }
     }
   }

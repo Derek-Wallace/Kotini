@@ -5,22 +5,26 @@
     <div class="line line-3"></div>
   </div>
   <div id="mobile-nav" class="mt-5 pt-2 pb-2 pl-2 nav-mobile fade-out">
-    <router-link :to="{name: 'Home'}">
+    <router-link :to="{name: 'Home'}" @click="toggleMobile">
       <h1 class="navbar-item-m">
         HOME
       </h1>
     </router-link>
-    <router-link :to="{name: 'Account'}">
+    <router-link :to="{name: 'Account'}" @click="toggleMobile">
       <h1 class="navbar-item-m">
         ACCOUNT
       </h1>
     </router-link>
-    <h1 class="navbar-item-m">
-      LEADERBOARDS
-    </h1>
-    <h1 class="navbar-item-m">
-      HELP
-    </h1>
+    <router-link :to="{name:'Leaderboard'}" @click="toggleMobile">
+      <h1 class="navbar-item-m">
+        LEADERBOARDS
+      </h1>
+    </router-link>
+    <router-link :to="{name:'Help'}" @click="toggleMobile">
+      <h1 class="navbar-item-m">
+        HELP
+      </h1>
+    </router-link>
   </div>
   <div class="navbar-display d-flex">
     <div class="container-fluid">
@@ -161,6 +165,7 @@ export default {
 }
 
 .fade-out {
+  display: none;
   opacity: 0;
   transition: 100ms linear;
 }

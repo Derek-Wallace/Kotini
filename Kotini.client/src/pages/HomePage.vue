@@ -1,6 +1,6 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid">
-    <p class="title display-lg-1 display-3">
+    <p class="title">
       K O T I N I
     </p>
     <div class="row">
@@ -101,6 +101,7 @@ h1 {
   position: relative;
 }
 .title {
+  font-size: 10vh;
   font-family: 'Nunito', sans-serif;
   color: #ff9e00;
   text-shadow:

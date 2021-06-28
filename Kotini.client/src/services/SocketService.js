@@ -36,7 +36,6 @@ class SocketService extends SocketHandler {
   }
 
   async gameOver(gid) {
-    console.log('end')
     await gameService.getGame(gid)
   }
 }

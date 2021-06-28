@@ -17,7 +17,6 @@ class AccountService {
     try {
       const res = await api.put('/account/' + id, body)
       AppState.account = res.data
-      console.log(res.data)
     } catch (error) {
     }
   }

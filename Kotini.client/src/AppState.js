@@ -5,5 +5,7 @@ export const AppState = reactive({
   user: {},
   account: {},
   session: {},
-  lobbyPlayers: []
+  lobbyPlayers: [],
+  gamePlayers: [],
+  currentGame: {}
 })

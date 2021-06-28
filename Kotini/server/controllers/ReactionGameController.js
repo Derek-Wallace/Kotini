@@ -9,6 +9,7 @@ export class ReactionGameController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('/:sid', this.createGame)
       .get('/:id', this.getGame)
+      .get('/players/:gid', this.getGamePlayers)
       .delete('/:id', this.deleteGame)
   }
 
@@ -27,6 +28,15 @@ export class ReactionGameController extends BaseController {
     try {
       const game = await reactionGameService.getGame(req.params.id)
       return res.send(game)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getGamePlayers(req, res, next) {
+    try {
+      const players = await reactionGameService.getGamePlayers(req.params.gid)
+      return res.send(players)
     } catch (error) {
       next(error)
     }

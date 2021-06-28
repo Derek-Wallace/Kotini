@@ -31,6 +31,9 @@ export default {
     const router = useRouter()
     const socketHandler = new SocketHandler()
     watchEffect(async() => {
+      if (AppState.currentGame.id) {
+        router.push({ name: 'Game', params: { id: AppState.currentGame.id } })
+      }
       try {
         await sessionService.joinSession(route.params.id)
         await sessionService.getLobbyPlayers(route.params.id)
@@ -57,7 +60,6 @@ export default {
       route: route.params.id,
       async createGame(sid) {
         await gameService.createGame(sid)
-        router.push({ name: 'Game', params: { id: state.session.id } })
       }
     }
   }

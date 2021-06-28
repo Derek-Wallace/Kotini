@@ -13,6 +13,7 @@ export class AccountController extends BaseController {
       .put('/session/:sid', this.updateCurrentSession)
       .put('/game/:gid', this.updateCurrentGame)
       .put('/:id', this.updateAccount)
+      .put('/joingame/:gid', this.joinGame)
   }
 
   async updateAccount(req, res, next) {
@@ -66,6 +67,17 @@ export class AccountController extends BaseController {
     try {
       req.body.currentGame = req.params.gid
       const account = await accountService.updateCurrentGame(req.body, req.userInfo.id)
+      return res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async joinGame(req, res, next) {
+    req.body.currentGame = req.params.gid
+    req.body.id = req.userInfo.id
+    try {
+      const account = await accountService.joinGame(req.body)
       return res.send(account)
     } catch (error) {
       next(error)

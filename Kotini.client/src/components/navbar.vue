@@ -25,6 +25,9 @@
         HELP
       </h1>
     </router-link>
+    <h1 class="navbar-item-m" @click="logout">
+      LOGOUT
+    </h1>
   </div>
   <div class="navbar-display d-flex">
     <div class="container-fluid">

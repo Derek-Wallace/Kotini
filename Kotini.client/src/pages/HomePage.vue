@@ -1,6 +1,6 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid">
-    <p class="title display-1">
+    <p class="title display-lg-1 display-3">
       K O T I N I
     </p>
     <div class="row">

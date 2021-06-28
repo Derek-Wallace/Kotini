@@ -17,7 +17,7 @@
         <div class="row" v-for="l in leaders" :key="l.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="l.picture" height="40" /> {{ l.name }}
+              <img :src="l.picture" height="40" width="40" /> {{ l.name }}
             </h4>
             <p class="m-0">
               <b>{{ l.gamesPlayed }}</b>

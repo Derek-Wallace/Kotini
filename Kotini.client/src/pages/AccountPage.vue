@@ -9,13 +9,13 @@
       <div class="col-md-3 text-center">
         <img class="rounded-circle picture-glow" :src="account.picture" alt="" />
       </div>
-      <div class="col-md-5 d-flex align-items-center">
-        <div class="about text-center">
+      <div class="col-md-5 align-items-center mb-5 mt-2 pt-lg-5">
+        <div class="about">
           <div>K-BUCKS: {{ account.wallet }}</div>
           <div>GAMES PLAYED: {{ account.gamesPlayed }}</div>
         </div>
       </div>
-      <div class="col-md-3 ml-auto">
+      <div class="col-md-3 ml-auto d-flex justify-content-end align-items-end mt-5 pt-5">
         <button class="edit-button" @click="showEditForm = !showEditForm">
           EDIT PROFILE
         </button>
@@ -108,4 +108,11 @@ img {
   height: 200px;
   max-width: 300px;
 }
+
+@media only screen and (max-width: 900px) {
+  .about {
+text-align: center;
+  }
+}
+
 </style>

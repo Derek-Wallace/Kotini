@@ -25,7 +25,6 @@ class SocketService extends SocketHandler {
 
   async updatePlayers(gid) {
     await accountService.updateProfileGame(AppState.account, gid)
-    console.log(AppState.account)
   }
 }
 

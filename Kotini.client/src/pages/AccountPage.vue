@@ -41,7 +41,6 @@ export default {
   name: 'Account',
   setup() {
     const state = reactive({
-      account: computed(() => AppState.account),
       newInfo: {}
     })
     const showEditForm = ref(false)
@@ -53,7 +52,8 @@ export default {
         AuthService.logout({ returnTo: window.location.origin })
       },
       async editProfile(id) {
-        accountService.editProfile(id, state.newInfo)
+        await accountService.editProfile(id, state.newInfo)
+        state.newInfo = {}
       }
     }
   }

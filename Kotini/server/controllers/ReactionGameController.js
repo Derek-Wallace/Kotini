@@ -1,6 +1,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { reactionGameService } from '../services/ReactionGameService'
 import BaseController from '../utils/BaseController'
+import { getRandomTime } from '../utils/RandomTime'
 
 export class ReactionGameController extends BaseController {
   constructor() {
@@ -27,6 +28,7 @@ export class ReactionGameController extends BaseController {
     try {
       req.body.sessionId = req.params.sid
       req.body.creatorId = req.userInfo.id
+      req.body.timeDelay = getRandomTime()
       const game = await reactionGameService.createGame(req.body)
       return res.send(game)
     } catch (error) {

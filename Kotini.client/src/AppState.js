@@ -8,5 +8,10 @@ export const AppState = reactive({
   lobbyPlayers: [],
   gamePlayers: [],
   currentGame: {},
+  gameVars: {
+    firstTime: null,
+    secondTime: null,
+    finalTime: null
+  },
   leaders: []
 })

@@ -44,9 +44,6 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
-        console.log(AppState.account.id + ' account')
-        // console.log(AppState.session.creatorId + ' session')
-        console.log(AppState.session)
       } catch (error) {
         Notification.toast(error)
       }

@@ -35,7 +35,6 @@ class AccountService {
       AppState.account.gamesPlayed = AppState.account.gamesPlayed + 1
       const res = await api.put('/account', AppState.account)
       AppState.account = res.data
-      console.log(AppState.account)
     } catch (error) {
       Notification.toast(error)
     }

@@ -4,10 +4,20 @@
       <div class="col-12 text-center">
         <span v-for="player in players" :key="player.id" class="text-light p-3">{{ player.name }}</span>
 
-        <h1 class="text-primary mt-5">
-          Click The Gun!
+        <h1 id="ready-button" class="text-success mt-5" role="button" @click="runGame">
+          Ready
         </h1>
-        <img id="game-button" src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png" width="300" role="button" @click="gamePlayed(account.id)">
+
+        <h1 id="game-instruction" class="text-primary mt-5 d-none">
+          Click the gun when it appears!
+        </h1>
+        <img id="game-button"
+             class="d-none"
+             src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
+             width="300"
+             role="button"
+             @click="gamePlayed(account.id)"
+        >
         <h2 id="game-played" class="d-none text-primary">
           You clicked the gun
         </h2>
@@ -19,10 +29,15 @@
           <h1 class="gg">
             Game Over
           </h1>
+          <h3 class="text-primary">
+            Your Score:
+            {{ score }}
+          </h3>
+          <h3></h3>
         </div>
         <div class="col-12 text-center">
           <h6 role="button" @click="playAgain" class="gg">
-            Play again?
+            Confirm
           </h6>
         </div>
       </div>
@@ -56,17 +71,30 @@ export default {
         AppState.account.currentGame = null
       },
       async gamePlayed(id) {
+        const d = new Date()
+        AppState.gameVars.secondTime = d.getTime()
+        AppState.gameVars.finalTime = AppState.gameVars.secondTime - AppState.gameVars.firstTime
         try {
           await gameService.gamePlayed(route.params.id, id)
           document.getElementById('game-button').classList.add('d-none')
         } catch (error) {
         }
         document.getElementById('game-played').classList.remove('d-none')
-        console.log(AppState.gamePlayers)
+      },
+      runGame() {
+        const d = new Date()
+        document.getElementById('ready-button').classList.add('d-none')
+        document.getElementById('game-instruction').classList.remove('d-none')
+        console.log(AppState.currentGame.timeDelay)
+        setTimeout(function() {
+          document.getElementById('game-button').classList.remove('d-none')
+          AppState.gameVars.firstTime = d.getTime()
+        }, AppState.currentGame.timeDelay * 1000)
       },
       players: computed(() => AppState.gamePlayers),
       account: computed(() => AppState.account),
-      currentGame: computed(() => AppState.currentGame)
+      currentGame: computed(() => AppState.currentGame),
+      score: computed(() => AppState.gameVars.finalTime)
     }
   }
 

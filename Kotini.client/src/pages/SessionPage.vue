@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" v-if="session.id">
     <div class="row">
       <div class="col-lg-12 text-center mt-4 text-break session-title">
         <h1>Your Session: {{ route }}</h1>
@@ -31,7 +31,7 @@ export default {
     const router = useRouter()
     const socketHandler = new SocketHandler()
     watchEffect(async() => {
-      if (AppState.currentGame.id) {
+      if (AppState.currentGame.id && !AppState.currentGame.ended) {
         router.push({ name: 'Game', params: { id: AppState.currentGame.id } })
       }
       try {
@@ -44,6 +44,9 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
+        console.log(AppState.account.id + ' account')
+        // console.log(AppState.session.creatorId + ' session')
+        console.log(AppState.session)
       } catch (error) {
         Notification.toast(error)
       }

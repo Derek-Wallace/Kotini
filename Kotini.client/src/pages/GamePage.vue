@@ -15,10 +15,15 @@
     </div>
     <div v-else>
       <div class="row">
-        <div class="col-12">
-          <h1 class="text-light">
+        <div class="col-12 text-center mb-5">
+          <h1 class="gg">
             Game Over
           </h1>
+        </div>
+        <div class="col-12 text-center">
+          <h6 role="button" @click="playAgain" class="gg">
+            Play again?
+          </h6>
         </div>
       </div>
     </div>
@@ -29,10 +34,12 @@
 import { onMounted, computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gameService } from '../services/GameService'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { accountService } from '../services/AccountService'
 export default {
   setup() {
     const route = useRoute()
+    const router = useRouter()
 
     onMounted(async() => {
       try {
@@ -42,6 +49,12 @@ export default {
       }
     })
     return {
+      async playAgain() {
+        await accountService.updateProfileGame(AppState.account, route.params.id)
+        await accountService.updateGamePlayed()
+        router.push({ path: '/sessions/' + AppState.currentGame.sessionId })
+        AppState.account.currentGame = null
+      },
       async gamePlayed(id) {
         try {
           await gameService.gamePlayed(route.params.id, id)
@@ -63,6 +76,15 @@ export default {
 <style scoped>
 .gamePage {
   height: 70vh;
+}
+
+.gg{
+      font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  color: #ff9e00;
+    text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
 }
 
 </style>

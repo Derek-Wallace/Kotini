@@ -74,6 +74,7 @@ export default {
         const d = new Date()
         AppState.gameVars.secondTime = d.getTime()
         AppState.gameVars.finalTime = AppState.gameVars.secondTime - AppState.gameVars.firstTime
+        AppState.gameVars.finalTime = AppState.gameVars.finalTime - (AppState.currentGame.timeDelay * 1000)
         try {
           await gameService.gamePlayed(route.params.id, id)
           document.getElementById('game-button').classList.add('d-none')
@@ -85,10 +86,10 @@ export default {
         const d = new Date()
         document.getElementById('ready-button').classList.add('d-none')
         document.getElementById('game-instruction').classList.remove('d-none')
+        AppState.gameVars.firstTime = d.getTime()
         console.log(AppState.currentGame.timeDelay)
         setTimeout(function() {
           document.getElementById('game-button').classList.remove('d-none')
-          AppState.gameVars.firstTime = d.getTime()
         }, AppState.currentGame.timeDelay * 1000)
       },
       players: computed(() => AppState.gamePlayers),

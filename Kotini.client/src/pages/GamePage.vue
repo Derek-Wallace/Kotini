@@ -29,6 +29,9 @@
           <h1 class="gg">
             Game Over
           </h1>
+          <h2 class="text-success" v-if="currentGame.winner.name">
+            Winner: {{ currentGame.winner.name }}
+          </h2>
           <h3 class="text-primary">
             Your Score:
             {{ score }}
@@ -51,6 +54,7 @@ import { AppState } from '../AppState'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
 import { accountService } from '../services/AccountService'
+import Notification from '../utils/Notification'
 export default {
   setup() {
     const route = useRoute()
@@ -71,16 +75,18 @@ export default {
         AppState.account.currentGame = null
       },
       async gamePlayed(id) {
+        document.getElementById('game-button').classList.add('d-none')
+        document.getElementById('game-played').classList.remove('d-none')
         const d = new Date()
         AppState.gameVars.secondTime = d.getTime()
         AppState.gameVars.finalTime = AppState.gameVars.secondTime - AppState.gameVars.firstTime
         AppState.gameVars.finalTime = AppState.gameVars.finalTime - (AppState.currentGame.timeDelay * 1000)
         try {
           await gameService.gamePlayed(route.params.id, id)
-          document.getElementById('game-button').classList.add('d-none')
+          await gameService.addResults(route.params.id, AppState.account.id, AppState.gameVars.finalTime)
         } catch (error) {
+          Notification.toast(error)
         }
-        document.getElementById('game-played').classList.remove('d-none')
       },
       runGame() {
         const d = new Date()

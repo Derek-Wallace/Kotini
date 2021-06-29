@@ -24,6 +24,13 @@ class GameService {
     const res = await api.get('api/reactiongames/' + gid)
     AppState.currentGame = res.data
   }
+
+  async addResults(gid, uid, val) {
+    const score = { score: val, id: uid }
+    const res = await api.put(`api/reactiongames/${gid}/results`, score)
+    AppState.currentGame = res.data
+    console.log(AppState.currentGame)
+  }
 }
 
 export const gameService = new GameService()

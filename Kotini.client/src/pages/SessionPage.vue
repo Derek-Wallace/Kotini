@@ -9,9 +9,9 @@
           <h1>START GAME</h1>
         </div>
       </div>
-      <div class="col-lg-5">
-        <PlayerCard v-for="player in players" :key="player" :player="player" />
-      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <PlayerCard v-for="player in players" :key="player" :player="player" />
     </div>
   </div>
 </template>

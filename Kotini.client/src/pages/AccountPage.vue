@@ -20,8 +20,8 @@
           EDIT PROFILE
         </button>
         <form @submit.prevent="editProfile(account.id)" v-if="showEditForm">
-          <input name="name" rows="1" placeholder="name..." v-model="state.newInfo.name">
-          <input name="picture" rows="1" placeholder="picture..." v-model="state.newInfo.picture">
+          <input name="name" placeholder="name..." v-model="state.newInfo.name">
+          <input name="picture" placeholder="picture..." v-model="state.newInfo.picture">
           <button class="edit-button" type="submit">
             UPDATE
           </button>

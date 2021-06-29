@@ -11,6 +11,7 @@ export const AccountSchema = new Schema(
     gamesPlayed: { type: Number, default: 0 },
     currentSession: { type: String, default: null },
     currentGame: { type: String, default: null }
+
     // NOTE If you wish to add additional public properties for Accounts do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }

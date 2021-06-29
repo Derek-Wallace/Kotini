@@ -14,6 +14,10 @@ class AccountService {
   }
 
   async editProfile(id, body) {
+    if (AppState.achievements.picasso !== true) {
+      AppState.achievements.picasso = true
+      Notification.toast('Picasso Achievement earned', 'success')
+    }
     try {
       const res = await api.put('/account/' + id, body)
       AppState.account = res.data

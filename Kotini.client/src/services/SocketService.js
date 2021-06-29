@@ -15,6 +15,7 @@ class SocketService extends SocketHandler {
       .on('updatePlayers', this.updatePlayers)
       .on('gameCreated', this.joinGame)
       .on('game-over', this.gameOver)
+      .on('results-calc', this.gameOver)
   }
 
   onError(e) {

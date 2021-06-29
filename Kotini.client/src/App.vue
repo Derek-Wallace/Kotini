@@ -10,11 +10,17 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { AppState } from './AppState'
+import { achievementsService } from './services/AchievementsService'
 export default {
   name: 'App',
   setup() {
+    watchEffect(async() => {
+      if (AppState.account.id) {
+        await achievementsService.getAchievements()
+      }
+    })
     return {
       user: computed(() => AppState.user),
       appState: computed(() => AppState)

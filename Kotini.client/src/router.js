@@ -14,7 +14,9 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('HomePage'),
+    beforeEnter: authGuard
+
   },
   {
     path: '/sessions/:id',

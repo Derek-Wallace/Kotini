@@ -13,7 +13,9 @@ async function createAccountIfNeeded(account, user) {
     account = await dbContext.Account.create({
       ...user,
       subs: [user.sub]
+
     })
+    await dbContext.Achievements.create({ creatorId: user.id })
   }
   return account
 }

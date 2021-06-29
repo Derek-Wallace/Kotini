@@ -2,6 +2,7 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 import Notification from '../utils/Notification'
+import { achievementsService } from './AchievementsService'
 
 class AccountService {
   async getAccount() {
@@ -16,7 +17,8 @@ class AccountService {
   async editProfile(id, body) {
     if (AppState.achievements.picasso !== true) {
       AppState.achievements.picasso = true
-      Notification.toast('Picasso Achievement earned', 'success')
+      Notification.toast('Picasso Achievement earned', 'success', 'https://img.icons8.com/emoji/452/artist-palette.png')
+      await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
     }
     try {
       const res = await api.put('/account/' + id, body)

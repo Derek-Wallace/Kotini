@@ -40,11 +40,15 @@ export default class Notification {
  * -----------------------------------
  * {@link https://sweetalert2.github.io/#configuration|Check out Sweet Alerts}
  */
-  static toast(title = 'Warning!', display = 'warning', position = 'top-end', timer = 3000, progressBar = true) {
+  static toast(title = 'Warning!', display = 'warning', imageUrl = '', position = 'top-end', timer = 3000, progressBar = true) {
     Swal.fire({
       title: title,
       icon: display,
       position: position,
+      imageUrl: imageUrl,
+      imageWidth: 100,
+      imageHeight: 100,
+      imageAlt: 'Custom image',
       timer: timer,
       timerProgressBar: progressBar,
       toast: true,

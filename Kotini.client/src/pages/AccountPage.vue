@@ -28,6 +28,13 @@
         </form>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto picture-glow box">
+        <div class="row">
+          <Achievements />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +54,7 @@ export default {
     return {
       state,
       showEditForm,
+
       account: computed(() => AppState.account),
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
@@ -113,6 +121,10 @@ img {
   .about {
 text-align: center;
   }
+}
+
+.box{
+  height: 50%;
 }
 
 </style>

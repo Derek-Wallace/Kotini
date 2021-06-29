@@ -33,6 +33,17 @@ class AccountService {
       Notification.toast(error)
     }
   }
+
+  async updateGamePlayed() {
+    try {
+      AppState.account.gamesPlayed = AppState.account.gamesPlayed + 1
+      const res = await api.put('/account', AppState.account)
+      AppState.account = res.data
+      console.log(AppState.account)
+    } catch (error) {
+      Notification.toast(error)
+    }
+  }
 }
 
 export const accountService = new AccountService()

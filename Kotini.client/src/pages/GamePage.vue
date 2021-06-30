@@ -97,6 +97,15 @@ export default {
           } catch (error) {
             Notification.toast(error)
           }
+        } else {
+          state.showButton = false
+          document.getElementById('game-played').classList.remove('d-none')
+          try {
+            await gameService.gamePlayed(route.params.id, id)
+            await gameService.addResults(route.params.id, AppState.account.id, 10000000000)
+          } catch (error) {
+            Notification.toast(error, 'error')
+          }
         }
       },
       runGame() {

@@ -41,6 +41,11 @@ class GameService {
     const res = await api.put(`api/reactiongames/${gid}/results`, score)
     AppState.currentGame = res.data
   }
+
+  async tryTopScore(val) {
+    const score = { score: val }
+    await api.put('account/topscore/newscore', score)
+  }
 }
 
 export const gameService = new GameService()

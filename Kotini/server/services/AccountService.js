@@ -45,6 +45,18 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+  async tryTopScore(body, id) {
+    let account = await dbContext.Account.findOne({ _id: id })
+    if (account.fastestScore == null) {
+      account.fastestScore = body.score
+      account = await dbContext.Account.findOneAndUpdate({ _id: id }, account, { new: true })
+    } else if (account.fastestScore > body.score) {
+      account.fastestScore = body.score
+      account = await dbContext.Account.findOneAndUpdate({ _id: id }, account, { new: true })
+    }
+    return account
+  }
+
   async joinGame(body) {
     const account = await dbContext.Account.findByIdAndUpdate(body.id, body)
     return account

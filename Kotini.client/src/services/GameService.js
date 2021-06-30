@@ -27,15 +27,20 @@ class GameService {
     AppState.currentGame = res.data
   }
 
+  async getWins() {
+    const res = await api.get('api/reactiongames/games/wins')
+    AppState.wins = res.data
+  }
+
   async addResults(gid, uid, val) {
     const score = { score: val, id: uid }
     if (score.score <= 300 && AppState.achievements.sharpshooter === false) {
       AppState.achievements.sharpshooter = true
-      Notification.toast('Sharpshooter achievement earned', 'success', 'https://i.postimg.cc/0Nv9WrVV/sharpshooter.png')
+      Notification.toast('Sharpshooter achievement earned', '', 'https://i.postimg.cc/0Nv9WrVV/sharpshooter.png')
       await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
     } if (score.score <= 250 && AppState.achievements.bitw === false) {
       AppState.achievements.bitw = true
-      Notification.toast('Best in the West achievement earned', 'success', 'https://i.postimg.cc/fTjs3MzX/bitw.png')
+      Notification.toast('Best in the West achievement earned', '', 'https://i.postimg.cc/fTjs3MzX/bitw.png')
       await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
     }
     const res = await api.put(`api/reactiongames/${gid}/results`, score)

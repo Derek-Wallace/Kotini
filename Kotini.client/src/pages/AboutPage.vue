@@ -9,3 +9,6 @@ export default {
   name: 'AboutPage'
 }
 </script>
+<style>
+
+</style>

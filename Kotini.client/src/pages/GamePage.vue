@@ -125,6 +125,11 @@ export default {
   height: 70vh;
 }
 
+h1{
+    user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
 .gg{
       font-family: 'Nunito', sans-serif;
   font-family: 'Nunito', sans-serif;

@@ -14,5 +14,6 @@ export const AppState = reactive({
     finalTime: null
   },
   leaders: [],
-  achievements: {}
+  achievements: {},
+  wins: []
 })

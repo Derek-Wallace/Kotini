@@ -12,6 +12,7 @@
       <div class="col-md-5 align-items-center mb-5 mt-2 pt-lg-5">
         <div class="about">
           <div>K-BUCKS: {{ account.wallet }}</div>
+          <div>BEST TIME: {{}}ms</div>
           <div>GAMES PLAYED: {{ account.gamesPlayed }}</div>
         </div>
       </div>
@@ -35,23 +36,36 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col my-4 player-header text-center">
+        <p>Win History</p>
+      </div>
+    </div>
+    <div class="row">
+      <GameCard v-for="win in wins" :key="win.id" :win="win" />
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { accountService } from '../services/AccountService'
+import { gameService } from '../services/GameService'
 
 export default {
   name: 'Account',
   setup() {
+    onMounted(async() => {
+      await gameService.getWins()
+    })
     const state = reactive({
       newInfo: { name: AppState.account.name, picture: AppState.account.picture }
     })
     const showEditForm = ref(false)
     return {
+      wins: computed(() => AppState.wins),
       state,
       showEditForm,
 

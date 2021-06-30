@@ -23,7 +23,7 @@ class AchievementsService {
        AppState.achievements.bitw === true &&
        AppState.achievements.completionist === false) {
       AppState.achievements.completionist = true
-      Notification.toast('Completionist achievement earned', 'success', 'https://hadit.com/wp-content/uploads/2016/07/100-percent-002.png')
+      Notification.toast('Completionist achievement earned', '', 'https://hadit.com/wp-content/uploads/2016/07/100-percent-002.png')
       await this.updateAchievements(AppState.achievements, AppState.account.id)
     }
   }

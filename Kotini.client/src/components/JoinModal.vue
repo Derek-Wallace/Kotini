@@ -46,7 +46,7 @@ export default {
       async joinSession(event) {
         if (AppState.achievements.outOfShell === false) {
           AppState.achievements.outOfShell = true
-          Notification.toast('Out of your shell achievement earned', 'success', 'https://marypd2010.files.wordpress.com/2016/08/ktno5kkjc.png')
+          Notification.toast('Out of your shell achievement earned', '', 'https://marypd2010.files.wordpress.com/2016/08/ktno5kkjc.png')
           await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
         }
         await sessionService.joinSession(state.session)

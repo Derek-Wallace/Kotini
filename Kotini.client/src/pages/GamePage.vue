@@ -104,7 +104,6 @@ export default {
         document.getElementById('ready-button').classList.add('d-none')
         document.getElementById('game-instruction').classList.remove('d-none')
         AppState.gameVars.firstTime = d.getTime()
-        console.log(AppState.currentGame.timeDelay)
         setTimeout(function() {
           // document.getElementById('game-button').classList.remove('d-none')
           state.showButton = true

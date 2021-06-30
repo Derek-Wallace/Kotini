@@ -19,7 +19,7 @@ class GameService {
   }
 
   async gamePlayed(gid, id) {
-    const res = await api.put(`api/reactiongames/${gid}/played/` + id)
+    await api.put(`api/reactiongames/${gid}/played/` + id)
   }
 
   async getGame(gid) {
@@ -40,7 +40,6 @@ class GameService {
     }
     const res = await api.put(`api/reactiongames/${gid}/results`, score)
     AppState.currentGame = res.data
-    console.log(AppState.currentGame)
   }
 }
 

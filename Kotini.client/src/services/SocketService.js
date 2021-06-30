@@ -38,6 +38,7 @@ class SocketService extends SocketHandler {
 
   async gameOver(gid) {
     await gameService.getGame(gid)
+    await accountService.getAccount()
   }
 }
 

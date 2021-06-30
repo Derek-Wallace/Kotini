@@ -40,7 +40,7 @@
           </h3>
           <h3></h3>
         </div>
-        <div class="col-12 text-center">
+        <div v-if="currentGame.winner" class="col-12 text-center">
           <h6 role="button" @click="playAgain" class="gg">
             Confirm
           </h6>
@@ -94,6 +94,7 @@ export default {
           try {
             await gameService.gamePlayed(route.params.id, id)
             await gameService.addResults(route.params.id, AppState.account.id, AppState.gameVars.finalTime)
+            await gameService.tryTopScore(AppState.gameVars.finalTime)
           } catch (error) {
             Notification.toast(error)
           }

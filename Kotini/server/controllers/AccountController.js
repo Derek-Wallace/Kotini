@@ -14,6 +14,7 @@ export class AccountController extends BaseController {
       .put('/game/:gid', this.updateCurrentGame)
       .put('/:id', this.updateAccount)
       .put('/joingame/:gid', this.joinGame)
+      .put('/topscore/newscore', this.tryTopScore)
   }
 
   async updateAccount(req, res, next) {
@@ -79,6 +80,15 @@ export class AccountController extends BaseController {
     try {
       const account = await accountService.joinGame(req.body)
       return res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async tryTopScore(req, res, next) {
+    try {
+      await accountService.tryTopScore(req.body, req.userInfo.id)
+      return res.send('updated')
     } catch (error) {
       next(error)
     }

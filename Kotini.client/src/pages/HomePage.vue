@@ -101,7 +101,7 @@ h1 {
   position: relative;
 }
 .title {
-  font-size: 10vh;
+  font-size: 9vh;
   font-family: 'Nunito', sans-serif;
   color: #ff9e00;
   text-shadow:

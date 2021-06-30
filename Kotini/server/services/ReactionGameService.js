@@ -43,11 +43,15 @@ class ReactionGameService {
     const gamePlayers = await dbContext.Account.find({ currentGame: gid })
     if (gamePlayers.length <= updatedGame.results.length) {
       let winner = updatedGame.results[0].id
+      let winnerScore = updatedGame.results[0].score
       for (let i = 1; i < updatedGame.results.length; i++) {
         if (updatedGame.results[i].score < updatedGame.results[i - 1].score) {
           winner = updatedGame.results[i].id
+          winnerScore = updatedGame.results[i].score
         }
       }
+      await dbContext.ReactionGame.findByIdAndUpdate(gid, { winnerScore: winnerScore }, { new: true })
+
       await dbContext.ReactionGame.findByIdAndUpdate(gid, { winnerId: winner }, { new: true })
       const finalGame = await dbContext.ReactionGame.findById(gid).populate('winner')
       socketProvider.io.emit('results-calc', gid)

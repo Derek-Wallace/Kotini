@@ -8,6 +8,7 @@ export const ReactionGameSchema = new Schema(
     ended: { type: Boolean, default: false },
     timeDelay: { type: Number, default: 1 },
     winnerId: { type: Schema.Types.ObjectId, default: null },
+    winnerScore: { type: Number, default: null },
     sessionId: { type: String, required: true },
     title: { type: String, default: 'Quick Draw' },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }

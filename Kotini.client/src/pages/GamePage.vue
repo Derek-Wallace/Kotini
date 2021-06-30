@@ -11,7 +11,7 @@
         <h1 id="game-instruction" class="text-primary mt-5 d-none">
           Click the gun when it appears!
         </h1>
-        <div @keydown.space="gamePlayed(account.id)" id="game-button">
+        <a href="javascript:void(0)" @keydown.space="gamePlayed(account.id)" id="game-button">
           <img v-show="state.showButton"
                class=""
                src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
@@ -19,7 +19,7 @@
                role="button"
                @click="gamePlayed(account.id)"
           >
-        </div>
+        </a>
         <h2 id="game-played" class="d-none text-primary">
           You clicked the gun
         </h2>

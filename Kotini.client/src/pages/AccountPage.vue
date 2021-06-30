@@ -12,7 +12,7 @@
       <div class="col-md-5 align-items-center mb-5 mt-2 pt-lg-5">
         <div class="about">
           <div>K-BUCKS: {{ account.wallet }}</div>
-          <div>BEST TIME: {{}}ms</div>
+          <div>BEST TIME: {{ account.fastestScore }}ms</div>
           <div>GAMES PLAYED: {{ account.gamesPlayed }}</div>
         </div>
       </div>

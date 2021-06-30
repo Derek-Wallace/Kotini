@@ -84,17 +84,19 @@ export default {
       },
       async gamePlayed(id) {
         // document.getElementById('game-button').classList.add('d-none')
-        state.showButton = false
-        document.getElementById('game-played').classList.remove('d-none')
-        const d = new Date()
-        AppState.gameVars.secondTime = d.getTime()
-        AppState.gameVars.finalTime = AppState.gameVars.secondTime - AppState.gameVars.firstTime
-        AppState.gameVars.finalTime = AppState.gameVars.finalTime - (AppState.currentGame.timeDelay * 1000)
-        try {
-          await gameService.gamePlayed(route.params.id, id)
-          await gameService.addResults(route.params.id, AppState.account.id, AppState.gameVars.finalTime)
-        } catch (error) {
-          Notification.toast(error)
+        if (state.showButton === true) {
+          state.showButton = false
+          document.getElementById('game-played').classList.remove('d-none')
+          const d = new Date()
+          AppState.gameVars.secondTime = d.getTime()
+          AppState.gameVars.finalTime = AppState.gameVars.secondTime - AppState.gameVars.firstTime
+          AppState.gameVars.finalTime = AppState.gameVars.finalTime - (AppState.currentGame.timeDelay * 1000)
+          try {
+            await gameService.gamePlayed(route.params.id, id)
+            await gameService.addResults(route.params.id, AppState.account.id, AppState.gameVars.finalTime)
+          } catch (error) {
+            Notification.toast(error)
+          }
         }
       },
       runGame() {

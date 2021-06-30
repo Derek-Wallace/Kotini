@@ -295,7 +295,7 @@
           Sharpshooter
         </p>
         <p class="m-0">
-          Get a time under 300ms
+          Get a time under 250ms
         </p>
       </div>
     </div>
@@ -306,7 +306,7 @@
           Sharpshooter
         </p>
         <p class="m-0">
-          Get a time under 300ms
+          Get a time under 250ms
         </p>
       </div>
     </div>
@@ -319,7 +319,7 @@
           Best in the West
         </p>
         <p class="m-0">
-          Get a time under 250ms
+          Get a time under 200ms
         </p>
       </div>
     </div>
@@ -330,7 +330,7 @@
           Best in the West
         </p>
         <p class="m-0">
-          Get a time under 250ms
+          Get a time under 200ms
         </p>
       </div>
     </div>

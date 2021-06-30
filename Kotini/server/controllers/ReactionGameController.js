@@ -14,7 +14,7 @@ export class ReactionGameController extends BaseController {
       .delete('/:id', this.deleteGame)
       .put('/:gid/played/:id', this.gamePlayed)
       .put('/:gid/results', this.calcResults)
-      .get('/wins', this.getGamesByWinner)
+      .get('/games/wins', this.getGamesByWinner)
   }
 
   async gamePlayed(req, res, next) {

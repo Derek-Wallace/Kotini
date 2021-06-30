@@ -11,14 +11,15 @@
         <h1 id="game-instruction" class="text-primary mt-5 d-none">
           Click the gun when it appears!
         </h1>
-        <img @keydown.space="gamePlayed(account.id)"
-             id="game-button"
-             class="d-none"
-             src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
-             width="300"
-             role="button"
-             @click="gamePlayed(account.id)"
-        >
+        <a href="#" @keydown.space="gamePlayed(account.id)" id="game-button">
+          <img v-show="state.showButton"
+               class=""
+               src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
+               width="300"
+               role="button"
+               @click="gamePlayed(account.id)"
+          >
+        </a>
         <h2 id="game-played" class="d-none text-primary">
           You clicked the gun
         </h2>
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-import { onMounted, computed } from '@vue/runtime-core'
+import { onMounted, computed, reactive, ref } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
@@ -58,6 +59,10 @@ import { accountService } from '../services/AccountService'
 import Notification from '../utils/Notification'
 export default {
   setup() {
+    const gameButton = ref(null)
+    const state = reactive({
+      showButton: false
+    })
     const route = useRoute()
     const router = useRouter()
 
@@ -69,6 +74,8 @@ export default {
       }
     })
     return {
+      state,
+      gameButton,
       async playAgain() {
         await accountService.updateProfileGame(AppState.account, route.params.id)
         await accountService.updateGamePlayed()
@@ -76,7 +83,8 @@ export default {
         AppState.account.currentGame = null
       },
       async gamePlayed(id) {
-        document.getElementById('game-button').classList.add('d-none')
+        // document.getElementById('game-button').classList.add('d-none')
+        state.showButton = false
         document.getElementById('game-played').classList.remove('d-none')
         const d = new Date()
         AppState.gameVars.secondTime = d.getTime()
@@ -96,8 +104,10 @@ export default {
         AppState.gameVars.firstTime = d.getTime()
         console.log(AppState.currentGame.timeDelay)
         setTimeout(function() {
-          document.getElementById('game-button').classList.remove('d-none')
+          // document.getElementById('game-button').classList.remove('d-none')
+          state.showButton = true
         }, AppState.currentGame.timeDelay * 1000)
+        document.getElementById('game-button').focus()
       },
       players: computed(() => AppState.gamePlayers),
       account: computed(() => AppState.account),
@@ -121,6 +131,10 @@ export default {
     text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
+}
+
+#game-button:focus{
+outline: none;
 }
 
 img{

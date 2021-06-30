@@ -31,6 +31,9 @@ import { reactive } from '@vue/reactivity'
 import { sessionService } from '../services/SessionService'
 import $ from 'jquery'
 import { useRouter } from 'vue-router'
+import { AppState } from '../AppState'
+import { achievementsService } from '../services/AchievementsService'
+import Notification from '../utils/Notification'
 
 export default {
   setup() {
@@ -41,6 +44,11 @@ export default {
     return {
       state,
       async joinSession(event) {
+        if (AppState.achievements.outOfShell === false) {
+          AppState.achievements.outOfShell = true
+          Notification.toast('Out of your shell achievement earned', 'success', 'https://marypd2010.files.wordpress.com/2016/08/ktno5kkjc.png')
+          await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
+        }
         await sessionService.joinSession(state.session)
         $('#joinModal').modal('hide')
         event.target.reset()

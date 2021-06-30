@@ -11,7 +11,8 @@
         <h1 id="game-instruction" class="text-primary mt-5 d-none">
           Click the gun when it appears!
         </h1>
-        <img id="game-button"
+        <img @keydown.space="gamePlayed(account.id)"
+             id="game-button"
              class="d-none"
              src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
              width="300"
@@ -34,7 +35,7 @@
           </h2>
           <h3 class="text-primary">
             Your Score:
-            {{ score }}
+            {{ score }}ms
           </h3>
           <h3></h3>
         </div>
@@ -120,6 +121,12 @@ export default {
     text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
+}
+
+img{
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 </style>

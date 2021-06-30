@@ -1,6 +1,5 @@
 import { dbContext } from '../db/DbContext'
 import { socketProvider } from '../SocketProvider'
-import { logger } from '../utils/Logger'
 
 class ReactionGameService {
   async gamePlayed(gid, id) {

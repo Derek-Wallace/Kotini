@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="col-lg-4 my-2">
-    <div v-if="achievements.createdGame === true" class="d-flex m-2 earned p-2 rounded">
+    <div v-if="achievements.createGame === true" class="d-flex m-2 earned p-2 rounded">
       <img src="../assets/img/vikingbuilder.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
@@ -97,7 +97,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.findingFeet === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/boots.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Finding your feet
@@ -121,7 +121,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.scout === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/scout.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Scout
@@ -145,7 +145,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.soldier === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/soldier.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Soldier
@@ -169,7 +169,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.raider === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/raider.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Raider
@@ -193,7 +193,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.captain === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/captain.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Captain
@@ -217,7 +217,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.warlord === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/warlord.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Viking Warlord
@@ -241,7 +241,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.climbingRanks === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/climbingRanks.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Climbing the ranks
@@ -265,7 +265,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.secondToNone === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/secondToNone.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Second to none
@@ -289,7 +289,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.sharpshooter === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/sharpshooter.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Sharpshooter
@@ -313,7 +313,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.bitw === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/bitw.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Best in the West
@@ -337,7 +337,7 @@
   </div>
   <div class="col-lg-4 my-2">
     <div v-if="achievements.completionist === true" class="d-flex m-2 earned p-2 rounded">
-      <img src="../assets/img/main-logo-1.png" height="50" width="50" alt="First Edit" />
+      <img src="../assets/img/completionist.png" height="50" width="50" alt="First Edit" />
       <div class="ml-2 orange-words">
         <p class="m-0">
           Completionist

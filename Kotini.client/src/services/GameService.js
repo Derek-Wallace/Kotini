@@ -1,4 +1,6 @@
 import { AppState } from '../AppState'
+import Notification from '../utils/Notification'
+import { achievementsService } from './AchievementsService'
 import { api } from './AxiosService'
 
 class GameService {
@@ -27,6 +29,15 @@ class GameService {
 
   async addResults(gid, uid, val) {
     const score = { score: val, id: uid }
+    if (score.score <= 300 && AppState.achievements.sharpshooter === false) {
+      AppState.achievements.sharpshooter = true
+      Notification.toast('Sharpshooter achievement earned', 'success', 'https://i.postimg.cc/0Nv9WrVV/sharpshooter.png')
+      await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
+    } if (score.score <= 250 && AppState.achievements.bitw === false) {
+      AppState.achievements.bitw = true
+      Notification.toast('Best in the West achievement earned', 'success', 'https://i.postimg.cc/fTjs3MzX/bitw.png')
+      await achievementsService.updateAchievements(AppState.achievements, AppState.account.id)
+    }
     const res = await api.put(`api/reactiongames/${gid}/results`, score)
     AppState.currentGame = res.data
     console.log(AppState.currentGame)

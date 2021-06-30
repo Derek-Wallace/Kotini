@@ -9,6 +9,8 @@ export const AccountSchema = new Schema(
     picture: { type: String },
     wallet: { type: Number, default: 200 },
     gamesPlayed: { type: Number, default: 0 },
+    gamesWon: { type: Number, default: 0 },
+    fastestScore: { type: Number, default: null },
     currentSession: { type: String, default: null },
     currentGame: { type: String, default: null }
 

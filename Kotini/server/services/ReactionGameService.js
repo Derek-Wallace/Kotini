@@ -2,6 +2,11 @@ import { dbContext } from '../db/DbContext'
 import { socketProvider } from '../SocketProvider'
 
 class ReactionGameService {
+  async getGamesByWinner(id) {
+    const winner = await dbContext.ReactionGame.find({ winnerId: id })
+    return winner
+  }
+
   async gamePlayed(gid, id) {
     const game = await dbContext.ReactionGame.findByIdAndUpdate(gid, { $push: { players: id } }, { new: true })
     const gamePlayers = await dbContext.Account.find({ currentGame: gid })

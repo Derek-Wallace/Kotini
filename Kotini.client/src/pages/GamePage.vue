@@ -31,7 +31,7 @@
           <h1 class="gg">
             Game Over
           </h1>
-          <h2 class="text-success" v-if="currentGame.winner.name">
+          <h2 class="text-success" v-if="currentGame.winner">
             Winner: {{ currentGame.winner.name }}
           </h2>
           <h3 class="text-primary">

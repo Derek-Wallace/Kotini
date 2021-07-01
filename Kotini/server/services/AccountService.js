@@ -142,5 +142,13 @@ class AccountService {
     )
     return account
   }
+
+  async clearSession(id) {
+    let account = await dbContext.Account.findById(id)
+    account.currentSession = null
+    account.currentGame = null
+    account = await dbContext.Account.findOneAndUpdate({ _id: id }, account, { new: true })
+    return account
+  }
 }
 export const accountService = new AccountService()

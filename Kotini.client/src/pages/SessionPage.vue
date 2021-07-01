@@ -31,6 +31,7 @@ export default {
     const router = useRouter()
     const socketHandler = new SocketHandler()
     watchEffect(async() => {
+      AppState.lobbyPlayers = []
       if (AppState.currentGame.id && !AppState.currentGame.ended) {
         router.push({ name: 'Game', params: { id: AppState.currentGame.id } })
       }
@@ -44,7 +45,6 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
-        console.log(AppState.session)
       } catch (error) {
         Notification.toast(error)
       }

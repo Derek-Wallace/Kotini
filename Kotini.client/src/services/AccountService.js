@@ -74,6 +74,15 @@ class AccountService {
       Notification.toast(error)
     }
   }
+
+  async clearSession(id) {
+    try {
+      const res = await api.put('/account/clear/' + id)
+      AppState.account = res.data
+    } catch (error) {
+      Notification.toast(error)
+    }
+  }
 }
 
 export const accountService = new AccountService()

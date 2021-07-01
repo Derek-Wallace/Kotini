@@ -58,7 +58,13 @@ export default {
   name: 'Account',
   setup() {
     onMounted(async() => {
-      await gameService.getWins()
+      try {
+        await gameService.getWins()
+        await accountService.clearSession(AppState.account.id)
+        AppState.currentGame = {}
+      } catch (error) {
+        Notification.toast(error)
+      }
     })
     const state = reactive({
       newInfo: { name: AppState.account.name, picture: AppState.account.picture }

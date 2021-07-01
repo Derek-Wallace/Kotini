@@ -18,15 +18,24 @@
 </template>
 
 <script>
-import { computed, reactive } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { sessionService } from '../services/SessionService'
 import { useRouter } from 'vue-router'
+import { accountService } from '../services/AccountService'
 
 export default {
   name: 'Home',
   setup() {
+    onMounted(async() => {
+      try {
+        await accountService.clearSession(AppState.account.id)
+        AppState.currentGame = {}
+      } catch (error) {
+        Notification.toast(error)
+      }
+    })
     const router = useRouter()
     const state = reactive({
       session: computed(() => AppState.session)

@@ -14,7 +14,22 @@
 </template>
 
 <script>
+import { onMounted } from '@vue/runtime-core'
+import { accountService } from '../services/AccountService'
+import { AppState } from '../AppState'
 export default {
+  setup() {
+    onMounted(async() => {
+      try {
+        await accountService.clearSession(AppState.account.id)
+        AppState.currentGame = {}
+      } catch (error) {
+        Notification.toast(error)
+      }
+      return {
+      }
+    })
+  }
 
 }
 </script>

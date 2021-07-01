@@ -68,6 +68,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
 import { leaderboardService } from '../services/LeaderboardService'
+import { accountService } from '../services/AccountService'
 
 export default {
   setup() {
@@ -76,6 +77,8 @@ export default {
         await leaderboardService.getLeaders()
         await leaderboardService.getTimeLeaders()
         await leaderboardService.getWinLeaders()
+        await accountService.clearSession(AppState.account.id)
+        AppState.currentGame = {}
       } catch (error) {
         Notification.toast(error, 'error')
       }

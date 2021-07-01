@@ -1,11 +1,13 @@
 <template>
   <div class="container-fluid" v-if="session.id">
     <div class="row">
-      <div class="col-lg-12 mt-4 text-break session-title">
-        <span class="session-title d-flex justify-content-center">
-          Your Session: <p class="session-key ml-3" role="button" title="copy session key" @click="copySessionId()">{{ session.sessionKey }}</p>
-          <input type="hidden" id="sessionId" :value="session.sessionKey">
-        </span>
+      <div class="col-lg-12 mt-4 text-break session-title d-flex justify-content-center session-title">
+        <p class="session-title">
+          Your Session:
+        </p>
+        <p class="session-key ml-3 session-title" role="button" title="copy session key" @click="copySessionId()">
+          {{ session.sessionKey }}
+        </p>
       </div>
       <div class="col-lg-12" v-if="(account.id === session.creatorId) && (players.length) > 1">
         <div class="start-button text-center ml-5 mr-5" @click="createGame(session.sessionKey)">
@@ -20,6 +22,7 @@
     <div class="row d-flex justify-content-center">
       <PlayerCard v-for="player in players" :key="player" :player="player" />
     </div>
+    <input type="hidden" id="sessionId" :value="session.sessionKey">
   </div>
 </template>
 
@@ -84,6 +87,14 @@ export default {
 </script>
 
 <style scoped>
+.session-title {
+  font-family: 'Signika Negative', sans-serif;
+  font-size: 126% !important;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+  color: #ff9e00;
+}
 
 .start-button:hover {
   cursor: pointer;
@@ -131,14 +142,6 @@ export default {
   position: relative;
 }
 
-.session-title {
-  font-size: 4vh;
-  font-family: 'Signika Negative', sans-serif;
-  text-shadow:
-    0 0 .125em hsla(0, 0%, 100%, 0.3),
-    0 0 .45em #ff9e00;
-  color: #ff9e00;
-}
 .session-key{
   transition: all .2s ease;
 }

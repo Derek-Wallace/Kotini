@@ -84,13 +84,6 @@ export default {
 </script>
 
 <style scoped>
-.session-title {
-  font-family: 'Signika Negative', sans-serif;
-  text-shadow:
-    0 0 .125em hsla(0, 0%, 100%, 0.3),
-    0 0 .45em #ff9e00;
-  color: #ff9e00;
-}
 
 .start-button:hover {
   cursor: pointer;
@@ -139,7 +132,7 @@ export default {
 }
 
 .session-title {
-  font-size: 3rem;
+  font-size: 4vh;
   font-family: 'Signika Negative', sans-serif;
   text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),

@@ -33,7 +33,9 @@ const routes = [
   {
     path: '/leaderboards',
     name: 'Leaderboard',
-    component: loadPage('LeaderboardsPage')
+    component: loadPage('LeaderboardsPage'),
+    beforeEnter: authGuard
+
   },
   {
     path: '/help',

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3">
+  <div class="col-lg-3">
     <div class="game-card mb-3 py-3 px-1 mx-1">
       <p><b>{{ win.title }}</b></p>
       <p>Score: {{ win.winnerScore }}ms</p>

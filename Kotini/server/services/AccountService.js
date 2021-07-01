@@ -1,5 +1,4 @@
 import { dbContext } from '../db/DbContext'
-import { socketProvider } from '../SocketProvider'
 
 // Private Methods
 
@@ -146,7 +145,6 @@ class AccountService {
 
   async clearSession(id) {
     let account = await dbContext.Account.findById(id)
-    socketProvider.io.emit('joined', account.currentSession)
     account.currentSession = null
     account.currentGame = null
     account = await dbContext.Account.findOneAndUpdate({ _id: id }, account, { new: true })

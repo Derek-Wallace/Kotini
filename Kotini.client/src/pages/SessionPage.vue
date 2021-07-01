@@ -142,14 +142,6 @@ export default {
   position: relative;
 }
 
-.session-title {
-  font-size: 3rem;
-  font-family: 'Signika Negative', sans-serif;
-  text-shadow:
-    0 0 .125em hsla(0, 0%, 100%, 0.3),
-    0 0 .45em #ff9e00;
-  color: #ff9e00;
-}
 .session-key{
   transition: all .2s ease;
 }

@@ -2,10 +2,10 @@
   <div class="container-fluid" v-if="session.id">
     <div class="row">
       <div class="col-lg-12 text-center mt-4 text-break session-title">
-        <h1>Your Session: {{ route }}</h1>
+        <h1>Your Session: {{ session.sessionKey }}</h1>
       </div>
       <div class="col-lg-12" v-if="(account.id === session.creatorId)">
-        <div class="start-button text-center ml-5 mr-5" @click="createGame(session.id)">
+        <div class="start-button text-center ml-5 mr-5" @click="createGame(session.sessionKey)">
           <h1>START GAME</h1>
         </div>
       </div>
@@ -44,6 +44,7 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
+        console.log(AppState.session)
       } catch (error) {
         Notification.toast(error)
       }

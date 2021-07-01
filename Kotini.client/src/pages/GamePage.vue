@@ -57,6 +57,7 @@ import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
 import { accountService } from '../services/AccountService'
 import Notification from '../utils/Notification'
+import { sessionService } from '../services/SessionService'
 export default {
   setup() {
     const gameButton = ref(null)
@@ -79,7 +80,7 @@ export default {
       async playAgain() {
         await accountService.updateProfileGame(AppState.account, route.params.id)
         await accountService.updateGamePlayed()
-        router.push({ path: '/sessions/' + AppState.currentGame.sessionId })
+        router.push({ path: '/sessions/' + AppState.session.sessionKey })
         AppState.account.currentGame = null
       },
       async gamePlayed(id) {

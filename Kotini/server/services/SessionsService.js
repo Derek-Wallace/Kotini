@@ -21,7 +21,7 @@ class SessionsService {
   }
 
   async getSessionById(id) {
-    const session = await dbContext.Session.findById(id).populate('creator', 'name picture')
+    const session = await dbContext.Session.findOne({ sessionKey: id }).populate('creator', 'name picture')
     return session
   }
 }

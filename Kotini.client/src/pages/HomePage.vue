@@ -36,7 +36,7 @@ export default {
       account: computed(() => AppState.account),
       async createSession() {
         await sessionService.createSession()
-        router.push({ name: 'Session', params: { id: state.session.id } })
+        router.push({ name: 'Session', params: { id: state.session.sessionKey } })
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })

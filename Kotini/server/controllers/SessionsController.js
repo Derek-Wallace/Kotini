@@ -1,6 +1,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { sessionsService } from '../services/SessionsService'
 import BaseController from '../utils/BaseController'
+import { keyGen } from '../utils/KeyGen'
 
 export class SessionsController extends BaseController {
   constructor() {
@@ -25,6 +26,7 @@ export class SessionsController extends BaseController {
   async createSession(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
+      req.body.sessionKey = keyGen()
       const session = await sessionsService.createSession(req.body)
       return res.send(session)
     } catch (error) {

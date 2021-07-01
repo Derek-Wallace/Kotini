@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { onMounted, computed, reactive, ref } from '@vue/runtime-core'
+import { onMounted, computed, reactive, ref, onUnmounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
@@ -77,6 +77,13 @@ export default {
         await gameService.getGame(route.params.id)
         await gameService.getGamePlayers(route.params.id)
       } catch (error) {
+      }
+    })
+    onUnmounted(async() => {
+      try {
+        await gameService.removePlayer(AppState.currentGame.id)
+      } catch (error) {
+        Notification.toast(error)
       }
     })
     return {

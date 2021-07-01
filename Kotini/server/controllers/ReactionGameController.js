@@ -15,6 +15,7 @@ export class ReactionGameController extends BaseController {
       .put('/:gid/played/:id', this.gamePlayed)
       .put('/:gid/results', this.calcResults)
       .get('/games/wins', this.getGamesByWinner)
+      .put('/remove/:gid', this.removePlayer)
   }
 
   async gamePlayed(req, res, next) {
@@ -78,6 +79,15 @@ export class ReactionGameController extends BaseController {
     try {
       const winner = await reactionGameService.getGamesByWinner(req.userInfo.id)
       return res.send(winner)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async removePlayer(req, res, next) {
+    try {
+      await reactionGameService.removePlayer(req.userInfo.id, req.params.gid)
+      return res.send('removed')
     } catch (error) {
       next(error)
     }

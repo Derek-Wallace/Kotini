@@ -74,7 +74,6 @@ export default {
         const copyText = document.getElementById('sessionId')
         copyText.setAttribute('type', 'text')
         copyText.select()
-
         document.execCommand('copy')
         copyText.setAttribute('type', 'hidden')
         window.getSelection().removeAllRanges()

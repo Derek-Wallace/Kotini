@@ -70,7 +70,6 @@ export default {
         await gameService.createGame(sid)
       },
       copySessionId() {
-        console.log('clikced')
         const copyText = document.getElementById('sessionId')
         copyText.setAttribute('type', 'text')
         copyText.select()

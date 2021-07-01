@@ -9,11 +9,11 @@
           {{ session.sessionKey }}
         </p>
       </div>
-      <div class="col-lg-12" v-if="(account.id === session.creatorId) && (players.length) > 1">
+      <div class="col-lg-6 mx-auto" v-if="(account.id === session.creatorId) && (players.length) > 1">
         <div class="start-button text-center ml-5 mr-5" @click="createGame(session.sessionKey)">
           <h1>START GAME</h1>
         </div>
-      </div><div class="col-lg-12" v-if="(account.id === session.creatorId) && (players.length) < 2">
+      </div><div class="col-lg-6 mx-auto" v-if="(account.id === session.creatorId) && (players.length) < 2">
         <div class="start-button text-center ml-5 mr-5">
           <h1>NEED MORE PLAYERS</h1>
         </div>

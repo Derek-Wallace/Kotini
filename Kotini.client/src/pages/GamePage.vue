@@ -51,13 +51,12 @@
 </template>
 
 <script>
-import { onMounted, computed, reactive, ref } from '@vue/runtime-core'
+import { onMounted, computed, reactive, ref, onUnmounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
 import { accountService } from '../services/AccountService'
 import Notification from '../utils/Notification'
-import { sessionService } from '../services/SessionService'
 export default {
   setup() {
     const gameButton = ref(null)
@@ -69,9 +68,22 @@ export default {
 
     onMounted(async() => {
       try {
+        if (!AppState.session.id) {
+          AppState.account.currentGame = null
+          AppState.account.currentSession = null
+          await accountService.clearSession(AppState.account.id)
+          router.push({ name: 'Home' })
+        }
         await gameService.getGame(route.params.id)
         await gameService.getGamePlayers(route.params.id)
       } catch (error) {
+      }
+    })
+    onUnmounted(async() => {
+      try {
+        await gameService.removePlayer(AppState.currentGame.id)
+      } catch (error) {
+        Notification.toast(error)
       }
     })
     return {

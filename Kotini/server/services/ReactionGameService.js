@@ -63,6 +63,13 @@ class ReactionGameService {
     updatedGame = await dbContext.ReactionGame.findById(gid)
     return updatedGame
   }
+
+  async removePlayer(id, gid) {
+    let game = await dbContext.ReactionGame.findOne({ _id: gid })
+    game = game.players.filter(p => p.id !== id)
+    game = await dbContext.ReactionGame.findOneAndUpdate({ _id: gid }, game, { new: true })
+    return game
+  }
 }
 
 export const reactionGameService = new ReactionGameService()

@@ -51,6 +51,10 @@ class GameService {
     const score = { score: val }
     await api.put('account/topscore/newscore', score)
   }
+
+  async removePlayer(gid) {
+    await api.put('api/reactiongames/remove/' + gid)
+  }
 }
 
 export const gameService = new GameService()

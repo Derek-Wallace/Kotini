@@ -11,7 +11,7 @@
         <h1 id="game-instruction" class="text-or-glow mt-5 d-none">
           Click the axe when it appears!
         </h1>
-        <a href="javascript:void(0)" @keydown.space="gamePlayed(account.id)" id="game-button">
+        <a href="javascript:void(0)" @keyup.space="gamePlayed(account.id)" id="game-button">
           <img v-show="state.showButton"
                class=""
                src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.postimg.cc%2F66rPywZC%2Faxe.png"

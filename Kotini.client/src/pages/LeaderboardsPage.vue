@@ -17,7 +17,7 @@
         <div class="row" v-for="l in leaders" :key="l.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="l.picture" height="40" width="40" alt="Profile Picture" /> {{ l.name }}
+              <img :src="l.picture" height="40" width="40" /> {{ l.name.substring(0,15) }}
             </h4>
             <p class="m-0">
               <b>{{ l.gamesPlayed }}</b>
@@ -34,7 +34,7 @@
         <div class="row" v-for="w in winLeaders" :key="w.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="w.picture" height="40" width="40" alt="Profile Picture" /> {{ w.name }}
+              <img :src="w.picture" height="40" width="40" /> {{ w.name }}
             </h4>
             <p class="m-0">
               <b>{{ w.gamesWon }}</b>
@@ -51,7 +51,7 @@
         <div class="row" v-for="t in timeLeaders" :key="t.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="t.picture" height="40" width="40" alt="Profile Picture" /> {{ t.name }}
+              <img :src="t.picture" height="40" width="40" /> {{ t.name }}
             </h4>
             <p class="m-0">
               <b>{{ t.fastestScore }}ms</b>

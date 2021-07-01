@@ -1,5 +1,4 @@
 import { dbContext } from '../db/DbContext'
-import { socketProvider } from '../SocketProvider'
 
 // Private Methods
 

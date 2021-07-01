@@ -7,8 +7,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-4 mx-auto my-2 border-oj p-lg-5">
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-3 mx-3 my-2 border-oj p-lg-5">
         <div class="row">
           <div class="col-12 mx-auto my-2 orange-words text-center played-header">
             GAMES PLAYED
@@ -21,6 +21,40 @@
             </h4>
             <p class="m-0">
               <b>{{ l.gamesPlayed }}</b>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mx-3 my-2 border-oj p-lg-5">
+        <div class="row">
+          <div class="col-12 mx-auto my-2 orange-words text-center played-header">
+            GAMES WON
+          </div>
+        </div>
+        <div class="row" v-for="w in winLeaders" :key="w.id">
+          <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
+            <h4 class="m-0">
+              <img :src="w.picture" height="40" width="40" /> {{ w.name }}
+            </h4>
+            <p class="m-0">
+              <b>{{ w.gamesWon }}</b>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mx-3 my-2 border-oj p-lg-5">
+        <div class="row">
+          <div class="col-12 mx-auto my-2 orange-words text-center played-header">
+            FASTEST TIME
+          </div>
+        </div>
+        <div class="row" v-for="t in timeLeaders" :key="t.id">
+          <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
+            <h4 class="m-0">
+              <img :src="t.picture" height="40" width="40" /> {{ t.name }}
+            </h4>
+            <p class="m-0">
+              <b>{{ t.fastestScore }}ms</b>
             </p>
           </div>
         </div>
@@ -40,12 +74,16 @@ export default {
     onMounted(async() => {
       try {
         await leaderboardService.getLeaders()
+        await leaderboardService.getTimeLeaders()
+        await leaderboardService.getWinLeaders()
       } catch (error) {
         Notification.toast(error, 'error')
       }
     })
     return {
-      leaders: computed(() => AppState.leaders)
+      leaders: computed(() => AppState.leaders),
+      timeLeaders: computed(() => AppState.timeLeaders),
+      winLeaders: computed(() => AppState.winLeaders)
     }
   }
 

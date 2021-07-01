@@ -14,7 +14,7 @@
         <a href="javascript:void(0)" @keyup.space="gamePlayed(account.id)" id="game-button">
           <img v-show="state.showButton"
                class=""
-               src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.postimg.cc%2F66rPywZC%2Faxe.png"
+               src="https://i.pinimg.com/originals/3c/67/6c/3c676c3ea16a95b767912ab3919cf1ac.png"
                width="300"
                role="button"
                @click="gamePlayed(account.id)"

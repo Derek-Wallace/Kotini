@@ -2,26 +2,26 @@
   <div class="gamePage flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid" v-if="currentGame.id">
     <div class="row" v-if="currentGame.ended === false">
       <div class="col-12 text-center">
-        <span v-for="player in players" :key="player.id" class="text-light p-3">{{ player.name }}</span>
+        <span v-for="player in players" :key="player.id" class="text-or-glow p-3">{{ player.name }}</span>
 
-        <h1 id="ready-button" class="text-success mt-5" role="button" @click="runGame">
+        <h1 id="ready-button" class="ready-button mt-5" role="button" @click="runGame">
           Ready
         </h1>
 
-        <h1 id="game-instruction" class="text-primary mt-5 d-none">
-          Click the gun when it appears!
+        <h1 id="game-instruction" class="text-or-glow mt-5 d-none">
+          Click the axe when it appears!
         </h1>
         <a href="javascript:void(0)" @keydown.space="gamePlayed(account.id)" id="game-button">
           <img v-show="state.showButton"
                class=""
-               src="https://static.wikia.nocookie.net/fallout/images/f/fd/FO76_Single_action_revolver.png"
+               src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.postimg.cc%2F66rPywZC%2Faxe.png"
                width="300"
                role="button"
                @click="gamePlayed(account.id)"
           >
         </a>
-        <h2 id="game-played" class="d-none text-primary">
-          You clicked the gun
+        <h2 id="game-played" class="d-none text-or-glow">
+          You clicked the axe
         </h2>
       </div>
     </div>
@@ -31,10 +31,10 @@
           <h1 class="gg">
             Game Over
           </h1>
-          <h2 class="text-success" v-if="currentGame.winner">
+          <h2 class="text-success winner-glow" v-if="currentGame.winner">
             Winner: {{ currentGame.winner.name }}
           </h2>
-          <h3 class="text-primary">
+          <h3 class="text-primary score-glow">
             Your Score:
             {{ score }}ms
           </h3>
@@ -135,6 +135,51 @@ export default {
 </script>
 
 <style scoped>
+
+.ready-button:hover {
+  cursor: pointer;
+  background: #ff9e00;
+  color: #240046;
+  text-shadow: 0;
+  transition: 100ms linear;
+}
+
+.ready-button::after {
+  border-radius: 60px;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em #ff9e00;
+  opacity: 0;
+  transition: 100ms linear;
+}
+
+.ready-button:hover::after {
+  opacity: 1;
+}
+
+.ready-button {
+  margin-top: 30px;
+  font-size: 3rem;
+  color: #ff9e00;
+  font-family: 'Signika Negative', sans-serif;
+  border: #ff9e00 4px solid;
+  padding: 1em 3em 1em 3em;
+  border-radius: 60px;
+
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+
+  box-shadow:
+    0 0 1em 0 #ff9e00 inset,
+    0 0 1em 0 #ff9e00;
+
+  position: relative;
+}
 .gamePage {
   height: 70vh;
 }
@@ -151,6 +196,27 @@ h1{
     text-shadow:
     0 0 .125em hsla(0, 0%, 100%, 0.3),
     0 0 .45em #ff9e00;
+}
+
+.text-or-glow {
+  color: #ff9e00;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+}
+
+.winner-glow {
+  color: #109732;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #109732;
+}
+
+.score-glow {
+  color: #5971db;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #5971db;
 }
 
 #game-button:focus{

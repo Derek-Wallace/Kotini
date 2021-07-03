@@ -17,16 +17,9 @@
         </div>
       </div>
       <div class="col-md-3 ml-auto d-flex justify-content-end align-items-end mt-5 pt-5">
-        <button class="edit-button" @click="showEditForm = !showEditForm">
+        <button class="edit-button" data-toggle="modal" data-target="#editModal">
           EDIT PROFILE
         </button>
-        <form @submit.prevent="editProfile(account.id)" v-if="showEditForm">
-          <input name="name" placeholder="name..." v-model="state.newInfo.name">
-          <input name="picture" placeholder="picture..." v-model="state.newInfo.picture">
-          <button class="edit-button" type="submit">
-            UPDATE
-          </button>
-        </form>
       </div>
     </div>
     <div class="row">
@@ -45,6 +38,7 @@
       <GameCard v-for="win in wins" :key="win.id" :win="win" />
     </div>
   </div>
+  <EditProfileModal v-if="account.id" />
 </template>
 
 <script>

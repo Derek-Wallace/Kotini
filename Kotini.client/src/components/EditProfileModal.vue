@@ -7,20 +7,22 @@
        aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-dark-theme">
-        <i class="fas fa-times close-button float-right fs-3" data-dismiss="modal"></i>
+      <div class="modal-content bg-dark-theme modal-shadow">
+        <div class="ml-auto float-right p-2">
+          <i class="fas fa-times close-button fs-3 t-shadow" role="button" data-dismiss="modal"></i>
+        </div>
         <div class="modal-body">
           <form class="form-group" @submit.prevent="editProfile(account.id)">
             <div class="mb-4">
-              <label class="form-label mb-0">Player Name</label>
+              <label class="form-label mb-0 t-shadow">Player Name</label>
               <input class="form-control input-bg in-text" name="name" placeholder="name..." v-model="state.newInfo.name">
             </div>
             <div class="mb-0">
-              <label class="form-label mb-0">Player Picture</label>
+              <label class="form-label mb-0 t-shadow">Player Picture</label>
               <input class="form-control input-bg in-text" name="picture" placeholder="picture..." v-model="state.newInfo.picture">
             </div>
             <div class="ml-auto">
-              <button class="edit-button mt-3 float-right" type="submit">
+              <button class="edit-button mt-3 float-right modal-button modal-submit" type="submit">
                 UPDATE
               </button>
             </div>
@@ -60,6 +62,12 @@ export default {
 </script>
 
 <style scoped>
+.modal-shadow{
+  border: .1vh solid #9d4edd;
+    box-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #9d4edd;
+}
 .in-text{
   color: #9d4edd;
 }
@@ -73,7 +81,9 @@ input {
 .input-bg {
   background-color: #3c096c;
   border: none;
-
+}
+.modal-submit {
+  background: none;
 }
 
 .bg-dark-theme {
@@ -138,6 +148,11 @@ input {
 .modal-body {
   color: #ff9100;
   font-size: 1.1em;
+}
+.t-shadow{
+    text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
 }
 
 </style>

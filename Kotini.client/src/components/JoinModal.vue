@@ -7,14 +7,14 @@
        aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-dark">
+      <div class="modal-content bg-dark-theme">
         <div class="modal-body p-5 text-center">
           <h5 class="modal-title mb-3" id="joinModalLabel">
             Session ID
           </h5>
-          <form @submit.prevent="joinSession">
+          <form class="form-group" @submit.prevent="joinSession">
             <label for="sessionInput" class="sr-only">Session ID</label>
-            <input type="text" name="sessionInput" placeholder="ID" v-model="state.session">
+            <input class="input-bg form-control" type="text" name="sessionInput" placeholder="ID" v-model="state.session">
             <div class="mt-5">
               <span class="modal-button mr-2" data-dismiss="modal" role="button">Cancel</span>
               <input class="modal-button ml-2 modal-submit" role="button" type="submit" placeholder="Join">
@@ -61,6 +61,31 @@ export default {
 </script>
 
 <style scoped>
+
+.bg-dark-theme {
+  background-color:#240046;
+    border: .1vh solid #9d4edd;
+    box-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #9d4edd;
+}
+input {
+ color: #9d4edd;
+}
+::placeholder {
+  color: #9d4edd;
+}
+.input-bg {
+  background-color: #3c096c;
+  border: none;
+  color: #9d4edd;
+
+}
+.modal-title{
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+}
 .modal-submit {
   background: none;
 }

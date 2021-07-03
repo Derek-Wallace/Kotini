@@ -15,7 +15,15 @@
           </div>
         </div>
         <div class="row" v-for="l in leaders" :key="l.id">
-          <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
+          <div v-if="account.id === l.id" class="col-12 d-flex justify-content-between user-text align-items-center orange-words my-3 border-left-0 border-right-0 border-top-0">
+            <h4 class="m-0">
+              <img :src="l.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ l.name.substring(0,15) }}
+            </h4>
+            <p class="m-0">
+              <b>{{ l.gamesPlayed }}</b>
+            </p>
+          </div>
+          <div v-else class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
               <img :src="l.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ l.name.substring(0,15) }}
             </h4>
@@ -34,7 +42,7 @@
         <div class="row" v-for="w in winLeaders" :key="w.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="w.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ w.name }}
+              <img :src="w.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ w.name.substring(0,15) }}
             </h4>
             <p class="m-0">
               <b>{{ w.gamesWon }}</b>
@@ -51,7 +59,7 @@
         <div class="row" v-for="t in timeLeaders" :key="t.id">
           <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
-              <img :src="t.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ t.name }}
+              <img :src="t.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ t.name.substring(0,15) }}
             </h4>
             <p class="m-0">
               <b>{{ t.fastestScore }}ms</b>
@@ -86,7 +94,8 @@ export default {
     return {
       leaders: computed(() => AppState.leaders),
       timeLeaders: computed(() => AppState.timeLeaders),
-      winLeaders: computed(() => AppState.winLeaders)
+      winLeaders: computed(() => AppState.winLeaders),
+      account: computed(() => AppState.account)
     }
   }
 
@@ -132,8 +141,25 @@ box-shadow:
 .border-oj {
     display: block;
     margin: 5px auto;
-    border: 5px solid #ff9e00;
+    border: .5vh solid #ff9e00;
     animation: border-pulsate 5s infinite;
 }
+
+/* @keyframes text-pulsate {
+    0%   { text-shadow:0 0 1em #9d4edd; }
+    50% { text-shadow:0 0 .1em hsla(0, 0%, 100%, 0.39); }
+    100%   { text-shadow: 0 0 1em #9d4edd; }
+}
+
+.user-text {
+  font-family: 'Nunito', sans-serif;
+  color: #ff9e00;
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+      box-shadow:
+    0 -1em 1em -.88em #9D4EDD inset;
+  border: #9D4EDD 1px groove;
+} */
 
 </style>

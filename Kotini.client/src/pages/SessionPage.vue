@@ -9,12 +9,12 @@
           {{ session.sessionKey }}
         </p>
       </div>
-      <div class="col-lg-6 mx-auto" v-if="(account.id === session.creatorId) && (players.length) > 1">
-        <div class="start-button text-center ml-5 mr-5" @click="createGame(session.sessionKey)">
+      <div class="col-lg-6 m-auto" v-if="(account.id === session.creatorId) && (players.length) > 1">
+        <div class="start-button text-center mx-xl-5" @click="createGame(session.sessionKey)">
           <h1>START GAME</h1>
         </div>
-      </div><div class="col-lg-6 mx-auto" v-if="(account.id === session.creatorId) && (players.length) < 2">
-        <div class="start-button text-center ml-5 mr-5">
+      </div><div class="col-lg-6 m-auto" v-if="(account.id === session.creatorId) && (players.length) < 2">
+        <div class="start-button text-center mx-xl-5 ">
           <h1>NEED MORE PLAYERS</h1>
         </div>
       </div>
@@ -33,13 +33,12 @@ import Notification from '../utils/Notification'
 import { sessionService } from '../services/SessionService'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
-import { SocketHandler } from '../utils/SocketHandler'
+import { socketService } from '../services/SocketService'
 
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const socketHandler = new SocketHandler()
     watchEffect(async() => {
       AppState.lobbyPlayers = []
       if (AppState.currentGame.id && !AppState.currentGame.ended) {
@@ -55,10 +54,10 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
+        socketService.emit('join', route.params.id)
       } catch (error) {
         Notification.toast(error)
       }
-      socketHandler.emit('join', route.params.id)
     })
     const state = reactive({
       session: computed(() => AppState.session)

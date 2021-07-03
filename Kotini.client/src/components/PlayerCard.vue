@@ -1,8 +1,12 @@
 <template>
-  <div class="col-xl-4 m-4 p-3 player rounded-pill d-flex justify-content-between align-items-center">
+  <div class="col-xl-4 m-xl-4 mt-3 p-3 player rounded-pill d-flex justify-content-between align-items-center">
     <img :src="player.picture" alt="Player Picture" height="80" width="80" class="rounded-circle">
-    <span class=" mx-2">{{ player.name.toUpperCase() }}</span>
-    <span class="mr-4">Games Played: {{ player.gamesPlayed }}</span>
+    <div class=" mx-2">
+      {{ player.name.toUpperCase().substring(0,15) }}
+    </div>
+    <div class="mr-4">
+      Games Played: {{ player.gamesPlayed }}
+    </div>
   </div>
 </template>
 

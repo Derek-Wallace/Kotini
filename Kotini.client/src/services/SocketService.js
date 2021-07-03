@@ -24,7 +24,6 @@ class SocketService extends SocketHandler {
   }
 
   async joinSession(payload) {
-    console.log('[JOINED]', payload)
     await sessionService.getLobbyPlayers(payload)
   }
 

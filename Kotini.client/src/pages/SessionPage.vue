@@ -33,13 +33,12 @@ import Notification from '../utils/Notification'
 import { sessionService } from '../services/SessionService'
 import { gameService } from '../services/GameService'
 import { useRoute, useRouter } from 'vue-router'
-import { SocketHandler } from '../utils/SocketHandler'
+import { socketService } from '../services/SocketService'
 
 export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const socketHandler = new SocketHandler()
     watchEffect(async() => {
       AppState.lobbyPlayers = []
       if (AppState.currentGame.id && !AppState.currentGame.ended) {
@@ -55,10 +54,10 @@ export default {
     onMounted(async() => {
       try {
         await sessionService.getSession(route.params.id)
+        socketService.emit('join', route.params.id)
       } catch (error) {
         Notification.toast(error)
       }
-      socketHandler.emit('join', route.params.id)
     })
     const state = reactive({
       session: computed(() => AppState.session)

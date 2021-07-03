@@ -1,4 +1,3 @@
-import { socketProvider } from '../SocketProvider'
 import { SocketHandler } from '../utils/SocketHandler'
 
 export class RoomHandler extends SocketHandler {
@@ -13,11 +12,14 @@ export class RoomHandler extends SocketHandler {
       .on('gameCreated', this.updatePlayers)
   }
 
-  joinRoom(payload) {
-    socketProvider.io.emit('joined', payload)
+  async joinRoom(payload) {
+    await this.socket.join(payload)
+    this.io.to(payload).emit('joined', payload)
+    // socketProvider.io.emit('joined', payload)
   }
 
   updatePlayers(data) {
-    socketProvider.io.to(`${data.sessionId}`).emit('updatePlayers', data.id)
+    // socketProvider.io.to(`${data.sessionId}`).emit('updatePlayers', data.id)
+    this.io.to(data.sessionId).emit('updatePlayers', data)
   }
 }

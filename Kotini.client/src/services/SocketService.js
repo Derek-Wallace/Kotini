@@ -23,8 +23,9 @@ class SocketService extends SocketHandler {
     Notification.toast(e.message, 'error')
   }
 
-  joinSession(payload) {
-    sessionService.getLobbyPlayers(payload)
+  async joinSession(payload) {
+    console.log('[JOINED]', payload)
+    await sessionService.getLobbyPlayers(payload)
   }
 
   async updatePlayers(gid) {

@@ -37,11 +37,11 @@ export class SocketHandler {
 
   onConnected(connection) {
     logger.log('[SOCKET_CONNECTION]', connection)
-    connected = true
   }
 
   onAuthenticated(auth) {
     logger.log('[SOCKET_AUTHENTICATED]', auth)
+    connected = true
     const playback = [...queue]
     queue = []
     playback.forEach(e => {

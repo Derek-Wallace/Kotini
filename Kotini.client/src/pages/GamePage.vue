@@ -76,6 +76,7 @@ export default {
         }
         await gameService.getGame(route.params.id)
         await gameService.getGamePlayers(route.params.id)
+        state.showButton = false
       } catch (error) {
       }
     })

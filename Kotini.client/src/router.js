@@ -40,7 +40,8 @@ const routes = [
   {
     path: '/help',
     name: 'Help',
-    component: loadPage('HelpPage')
+    component: loadPage('HelpPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/account',

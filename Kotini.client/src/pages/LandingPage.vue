@@ -15,7 +15,8 @@
         </div>
       </div>
       <div id="about-text" class="col-lg-12 about-text hidden">
-        <p>About Lorem</p>
+        <p>Welcome to Kotini</p>
+        <p>The social party game to establish your superiority over your friends</p>
       </div>
     </div>
   </div>

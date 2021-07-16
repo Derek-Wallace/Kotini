@@ -12,6 +12,12 @@ class MessageService {
     socketProvider.io.to(`${message.sessionKey}`).emit('new:message', message)
     return retMessage
   }
+
+  async createBotMessage(message) {
+    const retMessage = await dbContext.Message.create(message)
+    socketProvider.io.to(`${message.sessionKey}`).emit('new:message', message)
+    return retMessage
+  }
 }
 
 export const messageService = new MessageService()

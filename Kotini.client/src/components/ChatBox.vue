@@ -1,8 +1,13 @@
 <template>
   <div class="overflow-auto chat-box mt-5" id="text-box">
-    <p v-for="message in messages" :key="message.id" class="text-light text-break">
-      {{ message.creator.name }}: {{ message.message }}
-    </p>
+    <div v-for="message in messages" :key="message.id" class="text-light text-break">
+      <p v-if="message.botMessage == true">
+        {{ message.creator.name }}'s Bot: {{ message.message }}
+      </p>
+      <p v-else>
+        {{ message.creator.name }}: {{ message.message }}
+      </p>
+    </div>
   </div>
   <div class="chat-input">
     <form @submit.prevent="sendMessage">

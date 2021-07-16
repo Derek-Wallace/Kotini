@@ -9,6 +9,7 @@ export class MessageController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:sid', this.getMessageBySid)
       .post('/:sid', this.createMessage)
+      .post('/bot/:sid', this.createBotMessage)
   }
 
   async getMessageBySid(req, res, next) {
@@ -24,7 +25,20 @@ export class MessageController extends BaseController {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.sessionKey = req.params.sid
+      req.body.botMessage = false
       const message = await messageService.createMessage(req.body)
+      return res.send(message)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createBotMessage(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      req.body.sessionKey = req.params.sid
+      req.body.botMessage = true
+      const message = await messageService.createBotMessage(req.body)
       return res.send(message)
     } catch (error) {
       next(error)

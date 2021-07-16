@@ -18,5 +18,8 @@ export const AppState = reactive({
   winLeaders: [],
   achievements: {},
   wins: [],
-  messages: []
+  messages: [],
+  // AI
+  response: null,
+  promptString: ''
 })

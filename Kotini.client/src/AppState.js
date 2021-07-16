@@ -21,5 +21,7 @@ export const AppState = reactive({
   messages: [],
   // AI
   response: null,
-  promptString: ''
+  promptString: '',
+  botKey: '',
+  openai: null
 })

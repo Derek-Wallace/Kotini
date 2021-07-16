@@ -1,16 +1,23 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
-const OpenAI = require('openai-api')
-
-const OPENAI_API_KEY = ''
-
-const openai = new OpenAI(OPENAI_API_KEY)
-
 class BotService {
+  async getKey() {
+    const res = await api.get('api/messages/get/key')
+    AppState.botKey = res.data
+    console.log(AppState.botKey)
+
+    const OpenAI = require('openai-api')
+
+    const OPENAI_API_KEY = AppState.botKey
+
+    AppState.openai = new OpenAI(OPENAI_API_KEY)
+    return res.data
+  }
+
   async callApi(prompt, sid) {
     AppState.promptString += `\nHuman: ${prompt}\nAI:`
-    const gptResponse = await openai.complete({
+    const gptResponse = await AppState.openai.complete({
       engine: 'davinci',
       prompt: AppState.promptString,
       temperature: 0.9,

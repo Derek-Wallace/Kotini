@@ -8,6 +8,7 @@ export class MessageController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:sid', this.getMessageBySid)
+      .get('/get/key', this.getKey)
       .post('/:sid', this.createMessage)
       .post('/bot/:sid', this.createBotMessage)
   }
@@ -16,6 +17,14 @@ export class MessageController extends BaseController {
     try {
       const message = await messageService.getMessageBySid(req.params.sid)
       return res.send(message)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getKey(req, res, next) {
+    try {
+      return res.send(process.env.BOT_KEY)
     } catch (error) {
       next(error)
     }

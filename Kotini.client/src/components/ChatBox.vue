@@ -20,11 +20,13 @@
 <script>
 import { reactive, computed } from '@vue/reactivity'
 import { messageService } from '../services/MessageService'
+import { botService } from '../services/BotService'
 import { AppState } from '../AppState'
 import { onMounted } from '@vue/runtime-core'
 export default {
   setup() {
     onMounted(async() => {
+      await botService.getKey()
       await messageService.getMessages(AppState.session.sessionKey)
     })
     const state = reactive({

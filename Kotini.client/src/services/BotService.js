@@ -3,7 +3,7 @@ import { api } from './AxiosService'
 
 const OpenAI = require('openai-api')
 
-const OPENAI_API_KEY = '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'
+const OPENAI_API_KEY = ''
 
 const openai = new OpenAI(OPENAI_API_KEY)
 

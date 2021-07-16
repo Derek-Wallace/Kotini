@@ -17,7 +17,7 @@
         <div class="row" v-for="l in leaders" :key="l.id">
           <div v-if="account.id === l.id" class="col-12 d-flex justify-content-between user-text align-items-center orange-words my-3 border-left-0 border-right-0 border-top-0">
             <h4 class="m-0">
-              <img :src="l.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ l.name.substring(0,15) }}
+              <img :src="l.picture" height="40" width="40" alt="Pic" class="rounded-circle winner-glow" /> {{ l.name.substring(0,15) }}
             </h4>
             <p class="m-0">
               <b>{{ l.gamesPlayed }}</b>
@@ -149,17 +149,16 @@ box-shadow:
     0%   { text-shadow:0 0 1em #9d4edd; }
     50% { text-shadow:0 0 .1em hsla(0, 0%, 100%, 0.39); }
     100%   { text-shadow: 0 0 1em #9d4edd; }
-}
+} */
 
 .user-text {
-  font-family: 'Nunito', sans-serif;
-  color: #ff9e00;
-  text-shadow:
-    0 0 .125em hsla(0, 0%, 100%, 0.3),
-    0 0 .45em #ff9e00;
-      box-shadow:
-    0 -1em 1em -.88em #9D4EDD inset;
-  border: #9D4EDD 1px groove;
-} */
+  background-color: #6d23b1;
+  border-radius: 25px;
+  box-shadow: 0 0 0.125em hsl(0deg 0% 100% / 30%), 0 0 0.45em #6d23b1;
+}
+
+.winner-glow {
+border: #ff9e00 2px solid;
+}
 
 </style>

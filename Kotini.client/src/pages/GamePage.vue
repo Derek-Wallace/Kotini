@@ -1,14 +1,25 @@
 <template>
-  <div class="gamePage flex-grow-1 d-flex flex-column align-items-center justify-content-center container-fluid" v-if="currentGame.id">
+  <div class="gamePage h-100 container-fluid" v-if="currentGame.id">
     <div class="row" v-if="currentGame.ended === false">
-      <div class="col-12 text-center">
-        <span v-for="player in players" :key="player.id" class="text-or-glow p-3">{{ player.name }}</span>
-
-        <h1 id="ready-button" class="ready-button mt-5" role="button" @click="runGame">
+      <div class="col-xl-4 order-xl-1 order-2 text-center flex-column p-0">
+        <div v-for="player in players" :key="player.id">
+          <div class="m-xl-4 mt-3 p-3 player rounded-pill d-flex justify-content-between align-items-center">
+            <img :src="player.picture" alt="Player Picture" height="80" width="80" class="rounded-circle">
+            <div class=" mx-2">
+              {{ player.name.toUpperCase().substring(0,15) }}
+            </div>
+            <div class="mr-4">
+              Games Played: {{ player.gamesPlayed }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-2 order-1 d-flex justify-content-center mt-5">
+        <h1 id="ready-button" class="ready-button mt-5 text-center" role="button" @click="runGame">
           Ready
         </h1>
 
-        <h1 id="game-instruction" class="text-or-glow mt-5 d-none">
+        <h1 id="game-instruction" class="text-or-glow mt-5 d-none text-center">
           Click the axe when it appears!
         </h1>
         <a href="javascript:void(0)" @keyup.space="gamePlayed(account.id)" id="game-button">
@@ -20,14 +31,14 @@
                @click="gamePlayed(account.id)"
           >
         </a>
-        <h2 id="game-played" class="d-none text-or-glow">
+        <h2 id="game-played" class="mt-5 d-none text-or-glow">
           You clicked the axe
         </h2>
       </div>
     </div>
     <div v-else>
-      <div class="row">
-        <div class="col-12 text-center mb-5">
+      <div class="row mt-5">
+        <div class="col-12 text-center mb-5 mt-5">
           <h1 class="gg">
             Game Over
           </h1>
@@ -122,6 +133,7 @@ export default {
         setTimeout(function() {
           // document.getElementById('game-button').classList.remove('d-none')
           state.showButton = true
+          document.getElementById('game-instruction').classList.add('d-none')
         }, AppState.currentGame.timeDelay * 1000)
         document.getElementById('game-button').focus()
       },
@@ -164,6 +176,7 @@ export default {
 
 .ready-button {
   margin-top: 30px;
+  height: 20vh;
   font-size: 3rem;
   color: #ff9e00;
   font-family: 'Signika Negative', sans-serif;
@@ -228,6 +241,35 @@ img{
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+}
+.player-card {
+  background-color: #ddd5d5;
+  border-radius: 10px;
+  padding: 1em 3em;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.player-name {
+  font-size: 2em;
+}
+
+.player{
+  font-size: 1.25em;
+  background-color: #240046;
+  color: #ff9e00;
+  font-family: 'Signika Negative', sans-serif;
+  border: #9D4EDD 4px solid;
+  user-select: none;
+
+  text-shadow:
+    0 0 .125em hsla(0, 0%, 100%, 0.3),
+    0 0 .45em #ff9e00;
+
+  box-shadow:
+    0 0 1em 0 #9D4EDD inset,
+    0 0 1em 0 #9D4EDD;
+
 }
 
 </style>

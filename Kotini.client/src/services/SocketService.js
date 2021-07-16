@@ -5,6 +5,7 @@ import { sessionService } from './SessionService'
 import { accountService } from './AccountService'
 import { AppState } from '../AppState'
 import { gameService } from './GameService'
+import { messageService } from './MessageService'
 
 class SocketService extends SocketHandler {
   constructor() {
@@ -12,6 +13,7 @@ class SocketService extends SocketHandler {
     this
       .on('error', this.onError)
       .on('joined', this.joinSession)
+      .on('new:message', this.getMessage)
       .on('updatePlayers', this.updatePlayers)
       .on('gameCreated', this.joinGame)
       .on('game-over', this.gameOver)
@@ -25,6 +27,12 @@ class SocketService extends SocketHandler {
 
   async joinSession(payload) {
     await sessionService.getLobbyPlayers(payload)
+  }
+
+  async getMessage(message) {
+    await messageService.getMessages(message.sessionKey)
+    const textBox = document.getElementById('text-box')
+    textBox.scrollTop = textBox.scrollHeight
   }
 
   async updatePlayers(gid) {

@@ -1,12 +1,21 @@
 <template>
   <div class="overflow-auto chat-box mt-5" id="text-box">
     <div v-for="message in messages" :key="message.id" class="text-light text-break">
-      <p v-if="message.botMessage == true">
-        {{ message.creator.name }}'s Bot: {{ message.message }}
-      </p>
-      <p v-else>
-        {{ message.creator.name }}: {{ message.message }}
-      </p>
+      <div v-if="message.botMessage == true" class="bot-message">
+        <img :src="message.creator.picture" alt="" class="profile-pic">
+        <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}'S BOT</b></small>
+        <p><b>{{ message.message }}</b></p>
+      </div>
+      <div v-else-if="account.id == message.creator.id" class="user-message ml-auto">
+        <img :src="message.creator.picture" alt="" class="user-profile-pic">
+        <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}</b></small>
+        <p><b>{{ message.message }}</b></p>
+      </div>
+      <div v-else class="other-message">
+        <img :src="message.creator.picture" alt="" class="profile-pic">
+        <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}</b></small>
+        <p><b>{{ message.message }}</b></p>
+      </div>
     </div>
   </div>
   <div class="chat-input">
@@ -35,6 +44,7 @@ export default {
     return {
       state,
       messages: computed(() => AppState.messages),
+      account: computed(() => AppState.account),
       async sendMessage(event) {
         await messageService.sendMessage(state.message, AppState.session.sessionKey)
         state.message = null
@@ -46,8 +56,69 @@ export default {
 </script>
 
 <style>
+
+.profile-pic {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: -60px;
+  position: absolute;
+}
+
+.user-profile-pic {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 100px;
+  position: absolute;
+}
+
+.user-message {
+  background-color: #ffe1b1;
+  color: #5A189A;
+  border-radius: 50px;
+  padding: 20px 70px 10px 30px;
+  margin: 10px;
+  font-size: 0.9em;
+  position: relative;
+  text-align: right;
+  width:fit-content;
+}
+.user-message>.name-text{
+  color: #5A189A;
+}
+.other-message {
+  background-color: #8840d1;
+  color: #fff;
+  border-radius: 50px;
+  padding: 20px 30px 10px 70px;
+  margin: 10px;
+  font-size: 0.9em;
+  position: relative;
+  width:fit-content;
+}
+.other-message>.name-text{
+  color: white;
+}
+.bot-message {
+  background-color: #5b1f97;
+  color: #FF9E00;
+  border-radius: 50px;
+  padding: 20px 30px 10px 70px;
+  margin: 10px;
+  font-size: 0.9em;
+  position: relative;
+  width:fit-content;
+}
+
+.bot-message>.name-text{
+  color: #FF9E00;
+}
+
 .chat-box {
-  height: 20vh;
+  height: 50vh;
   width: 40vw;
   margin: auto;
   background-color: #9d4edd;
@@ -66,6 +137,7 @@ export default {
   box-shadow: 0 0 1em 0 #7b2cbf;
   padding-left: 10px;
   border-top: 5px solid #ff9e00;
+  margin-bottom: 60px;
 }
 
 .chat-submit {
@@ -108,7 +180,7 @@ export default {
     width: 95vw;
   }
   .chat-box {
-    height: 20vh;
+    height: 40vh;
     width: 95vw;
   }
 }

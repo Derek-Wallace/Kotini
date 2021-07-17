@@ -5,7 +5,6 @@ class BotService {
   async getKey() {
     const res = await api.get('api/messages/get/key')
     AppState.botKey = res.data
-    console.log(AppState.botKey)
 
     const OpenAI = require('openai-api')
 
@@ -29,7 +28,6 @@ class BotService {
     })
     AppState.response = gptResponse.data.choices
     AppState.promptString += `${AppState.response[0].text}`
-    console.log(AppState.response[0].text)
     const message = { message: AppState.response[0].text }
     await api.post(`api/messages/bot/${sid}`, message)
     return 'finished'

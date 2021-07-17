@@ -181,7 +181,7 @@ export default {
   color: #ff9e00;
   font-family: 'Signika Negative', sans-serif;
   border: #ff9e00 4px solid;
-  padding: 1em 3em 1em 3em;
+  padding: 1em 2.3em 1em 2.3em;
   border-radius: 60px;
 
   text-shadow:

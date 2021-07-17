@@ -71,7 +71,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-left: 100px;
+  margin-left: 50px;
   position: absolute;
 }
 

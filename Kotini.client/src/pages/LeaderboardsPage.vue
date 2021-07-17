@@ -48,7 +48,7 @@
               <b>{{ w.gamesWon }}</b>
             </p>
           </div>
-          <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
+          <div v-else class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
               <img :src="w.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ w.name.substring(0,15) }}
             </h4>
@@ -73,7 +73,7 @@
               <b>{{ t.fastestScore }}ms</b>
             </p>
           </div>
-          <div class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
+          <div v-else class="col-12 d-flex justify-content-between align-items-center orange-words my-3">
             <h4 class="m-0">
               <img :src="t.picture" height="40" width="40" alt="Pic" class="rounded-circle" /> {{ t.name.substring(0,15) }}
             </h4>

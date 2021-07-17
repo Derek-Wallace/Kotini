@@ -2,25 +2,19 @@
   <div class="overflow-auto chat-box mt-5" id="text-box">
     <div v-for="message in messages" :key="message.id" class="text-light text-break">
       <div v-if="message.botMessage == true" class="bot-message">
-        <img :src="message.creator.picture" alt="" class="profile-pic d-inline">
+        <img :src="message.creator.picture" alt="" class="profile-pic">
         <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}'S BOT</b></small>
-        <p class="ml-5">
-          <b>{{ message.message }}</b>
-        </p>
+        <p><b>{{ message.message }}</b></p>
       </div>
       <div v-else-if="account.id == message.creator.id" class="user-message ml-auto">
         <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}</b></small>
-        <img :src="message.creator.picture" alt="" class="user-profile-pic d-inline">
-        <p class="mr-5">
-          <b>{{ message.message }}</b>
-        </p>
+        <img :src="message.creator.picture" alt="" class="user-profile-pic">
+        <p><b>{{ message.message }}</b></p>
       </div>
       <div v-else class="other-message">
-        <img :src="message.creator.picture" alt="" class="profile-pic d-inline">
+        <img :src="message.creator.picture" alt="" class="profile-pic">
         <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}</b></small>
-        <p class="ml-5">
-          <b>{{ message.message }}</b>
-        </p>
+        <p><b>{{ message.message }}</b></p>
       </div>
     </div>
   </div>
@@ -68,7 +62,8 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 20px;
+  margin-left: -60px;
+  position: absolute;
 }
 
 .user-profile-pic {
@@ -76,17 +71,19 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-left: 20px;
+  margin-left: 10px;
+  position: absolute;
 }
 
 .user-message {
   background-color: #ffe1b1;
   color: #5A189A;
   border-radius: 50px;
-  padding: 10px 20px 10px 20px;
+  padding: 20px 70px 10px 40px;
   margin: 10px;
   font-size: 0.9em;
   position: relative;
+  text-align: right;
   width:fit-content;
 }
 .user-message>.name-text{
@@ -96,7 +93,7 @@ export default {
   background-color: #8840d1;
   color: #fff;
   border-radius: 50px;
-  padding: 10px 20px 10px 20px;
+  padding: 20px 30px 10px 70px;
   margin: 10px;
   font-size: 0.9em;
   position: relative;
@@ -109,7 +106,7 @@ export default {
   background-color: #5b1f97;
   color: #FF9E00;
   border-radius: 50px;
-  padding: 10px 20px 10px 20px;
+  padding: 20px 30px 10px 70px;
   margin: 10px;
   font-size: 0.9em;
   position: relative;

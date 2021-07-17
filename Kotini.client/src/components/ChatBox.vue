@@ -7,8 +7,8 @@
         <p><b>{{ message.message }}</b></p>
       </div>
       <div v-else-if="account.id == message.creator.id" class="user-message ml-auto">
-        <img :src="message.creator.picture" alt="" class="user-profile-pic">
         <small class="name-text"><b>{{ message.creator.name.toUpperCase() }}</b></small>
+        <img :src="message.creator.picture" alt="" class="user-profile-pic">
         <p><b>{{ message.message }}</b></p>
       </div>
       <div v-else class="other-message">
@@ -71,7 +71,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-left: 100px;
+  margin-left: 10px;
   position: absolute;
 }
 
@@ -129,7 +129,7 @@ export default {
 
 .chat-input {
   padding-top: 5px;
-  height: 6vh;
+  height: 7vh;
   width: 40vw;
   margin: auto;
   background-color: #9d4edd;

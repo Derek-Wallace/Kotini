@@ -34,4 +34,20 @@ export default {
   background: rgb(36,0,70);
   background: linear-gradient(0deg, rgba(36,0,70,1) 0%, rgba(60,9,108,1) 100%);
 }
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #7b2cbf;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #7b2cbf;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #7b2cbf;
+    background-color: #ff9e00;
+}
 </style>

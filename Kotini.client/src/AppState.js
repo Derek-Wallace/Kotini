@@ -17,5 +17,11 @@ export const AppState = reactive({
   timeLeaders: [],
   winLeaders: [],
   achievements: {},
-  wins: []
+  wins: [],
+  messages: [],
+  // AI
+  response: null,
+  promptString: '',
+  botKey: '',
+  openai: null
 })

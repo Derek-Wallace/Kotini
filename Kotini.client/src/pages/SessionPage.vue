@@ -22,6 +22,7 @@
     <div class="row d-flex justify-content-center">
       <PlayerCard v-for="player in players" :key="player" :player="player" />
     </div>
+    <ChatBox />
     <input type="hidden" id="sessionId" :value="session.sessionKey">
   </div>
 </template>

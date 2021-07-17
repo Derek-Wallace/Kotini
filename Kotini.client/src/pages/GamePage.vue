@@ -15,9 +15,9 @@
         </div>
       </div>
       <div class="col-xl-8 order-xl-2 order-1 d-flex justify-content-center mt-5">
-        <h1 id="ready-button" class="ready-button mt-5 text-center" role="button" @click="runGame">
+        <div id="ready-button" class="ready-button mt-5 text-center" role="button" @click="runGame">
           Ready
-        </h1>
+        </div>
 
         <h1 id="game-instruction" class="text-or-glow mt-5 d-none text-center">
           Click the axe when it appears!
@@ -176,7 +176,7 @@ export default {
 
 .ready-button {
   margin-top: 30px;
-  height: 20vh;
+  height: 180px;
   font-size: 3rem;
   color: #ff9e00;
   font-family: 'Signika Negative', sans-serif;

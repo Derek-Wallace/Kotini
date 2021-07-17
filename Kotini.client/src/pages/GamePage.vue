@@ -79,6 +79,7 @@ export default {
 
     onMounted(async() => {
       try {
+        document.getElementById('game-played').classList.add('d-none')
         if (!AppState.session.id) {
           AppState.account.currentGame = null
           AppState.account.currentSession = null

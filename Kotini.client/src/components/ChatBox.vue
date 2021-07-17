@@ -79,7 +79,7 @@ export default {
   background-color: #ffe1b1;
   color: #5A189A;
   border-radius: 50px;
-  padding: 20px 70px 10px 40px;
+  padding: 20px 70px 10px 30px;
   margin: 10px;
   font-size: 0.9em;
   position: relative;
@@ -129,7 +129,7 @@ export default {
 
 .chat-input {
   padding-top: 5px;
-  height: 6vh;
+  height: 7vh;
   width: 40vw;
   margin: auto;
   background-color: #9d4edd;
